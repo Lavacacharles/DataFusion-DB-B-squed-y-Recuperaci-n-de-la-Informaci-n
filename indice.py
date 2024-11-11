@@ -14,6 +14,9 @@ nltk.download("punkt")
 
 stemmer = SnowballStemmer("spanish")
 
+# In KB, MB or GB
+BLOCK_SIZE = 512
+
 # 1. Definir el stoplist
 with open("stoplist.txt", "r", encoding="latin-1") as fil:
     stoplist = [line.strip() for line in fil.readlines()]
@@ -48,7 +51,7 @@ class InvertIndex:
         self.idf = {}
         self.length = {}
 
-    def building(self, collection_text, position_text):
+    def build_block(self, collection_text, position_text):
         # TODO
         # Use SPIMI
         # A different version of the algorithm can be used with secondary memory
@@ -125,6 +128,10 @@ class InvertIndex:
         result = sorted(enumerate(scores), key=lambda x: x[1], reverse=True)
         # retornamos los k documentos mas relevantes (de mayor similitud al query)
         return result[:k]
+
+    def SPIMI_Invert(self, token_stream):
+        # TODO
+        pass
 
     def load_index(self):
         with open(self.index_file, "rb") as f:
