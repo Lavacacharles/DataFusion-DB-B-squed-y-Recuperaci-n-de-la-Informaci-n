@@ -8,6 +8,7 @@ import pickle
 import re
 import math
 from collections import defaultdict
+from size import total_size
 
 
 nltk.download("punkt")
@@ -15,7 +16,10 @@ nltk.download("punkt")
 stemmer = SnowballStemmer("spanish")
 
 # In KB, MB or GB
-BLOCK_SIZE = 512
+# We use MB
+BLOCK_SIZE = 2 * 10**7
+MEMORY_SIZE = 512 * 10**7
+MAX_BLOCKS = MEMORY_SIZE // BLOCK_SIZE
 
 # 1. Definir el stoplist
 with open("stoplist.txt", "r", encoding="latin-1") as fil:
@@ -45,55 +49,82 @@ def preprocesamiento(texto):
 
 
 class InvertIndex:
-    def __init__(self, index_file):
-        self.index_file = index_file
-        self.index = {}
-        self.idf = {}
-        self.length = {}
+    def __init__(self):
+        self.index_file_count = 0
 
-    def build_block(self, collection_text, position_text):
-        # TODO
-        # Use SPIMI
-        # A different version of the algorithm can be used with secondary memory
+    def build(self, collection_text, position_text):
+        print("inside build")
+        index_number = self.index_file_count
+        out_file_path = f"index{index_number}.dat"
+        # the index is the posting list
+        # The structure is like:
+        # {TERM: [(docID, TF), ...], ...}
+        # In place of saving a list in term, we could save a location towards
+        # towards a bucket, so that the index only has the terms and a pointer
+        # I believe, pointers are neccessary because it's possible that not all
+        # entries for a term can fit in only 1 page
+        index = defaultdict(list)
 
         collections_text_np = collection_text.to_numpy()
-        # build the inverted index with the collection
 
-        # compute the tf
-        tf = []
-        self.index = defaultdict(list)
+        # Iterate
         for i in range(len(collections_text_np)):
-            texto = collections_text_np[i][position_text]
-            texto = preprocesamiento(texto)
-
-            # calculate tf
-            text_freq = FreqDist(texto)
-            doc_tf = []
+            print("i: ", i)
+            # Add extra to current index
+            text_tokenized = preprocesamiento(collections_text_np[i][position_text])
+            text_freq = FreqDist(text_tokenized)
             for word, freq in text_freq.items():
-                self.index[word].append((i, np.log(1 + freq)))
-                doc_tf.append(np.log(1 + freq))
-            tf.append(doc_tf)
-        # print(self.index["empresarial"])
+                current = (i, np.log(1 + freq))
+                # If we pass the limit of the page, we save and create a new index
+                if total_size(index) + total_size(current) > BLOCK_SIZE:
+                    print("index: ", index_number)
+                    # we aren't sorting, so it needs to be done when we merge it
+                    with open(out_file_path, "wb") as f:
+                        pickle.dump(index, f)
+                    index_number += 1
+                    out_file_path = f"index{index_number}.dat"
+                    index.clear()
+                # We still have space, so we add the current value
+                else:
+                    index[word].append(current)
 
-        # compute the idf
-        for key, value in self.index.items():
-            self.idf[key] = np.log(len(collections_text_np) / len(value))
-        # print(self.idf)
+        # If there are remaining elements in the current intdex, we must save
+        # them
+        if len(index) > 0:
+            print("index: ", index_number)
+            # we aren't sorting, so it needs to be done when we merge it
+            with open(out_file_path, "wb") as f:
+                pickle.dump(index, f)
+            index_number += 1
+            out_file_path = f"index{index_number}.dat"
+            index.clear()
+        # Merge
+        # TODO
+        # In the merge, idf and normalization must be applied at the end, when
+        # everythings is in place
+        # groups is the number of current partitions. We iterate until groups
+        # is 1, meaning all has been merged into 1 group
+        groups = index_number // MAX_BLOCKS
+        start = 0
+        while groups > 1:
+            for i in range(groups):
+                blocks = defaultdict(list)
+                for i in range(start, start + MAX_BLOCKS):
+                    path = f"index{i}.data"
+                    with open(path, "rb") as f:
+                        current_index = pickle.load(f)
+                        for term, docs in current_index.items():
+                            # Heap can be used according to the professor
+                            # For now, the docs with thier tf are saved in a
+                            # list
+                            blocks[term].extend(docs)
+                # COMPLETE
 
-        # compute the length (norm)
-        for doc_id in range(len(collection_text)):
-            norm = 0
-            for term, postings in self.index.items():
-                for doc, tf in postings:
-                    if doc == doc_id:
-                        norm += (tf * self.idf[term]) ** 2
-            self.length[doc_id] = math.sqrt(norm)
-        # store in disk
-        combined = {"index": self.index, "idf": self.idf, "length": self.length}
-        with open(self.index_file, "wb") as f:
-            pickle.dump(combined, f)
+                start += MAX_BLOCKS
 
-    def retrieval(self, query, k):
+            groups = groups / 2
+
+    def retrieve(self, query, k):
         # TODO
         # Don't take the entire index at once
         self.load_index()
@@ -128,10 +159,6 @@ class InvertIndex:
         result = sorted(enumerate(scores), key=lambda x: x[1], reverse=True)
         # retornamos los k documentos mas relevantes (de mayor similitud al query)
         return result[:k]
-
-    def SPIMI_Invert(self, token_stream):
-        # TODO
-        pass
 
     def load_index(self):
         with open(self.index_file, "rb") as f:
