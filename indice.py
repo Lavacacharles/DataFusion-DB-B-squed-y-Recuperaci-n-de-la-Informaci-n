@@ -6,9 +6,11 @@ from nltk import FreqDist
 from nltk.stem.snowball import SnowballStemmer
 import pickle
 import re
+import os
 import math
 from collections import defaultdict
-from size import total_size
+
+# from size import total_size
 
 
 nltk.download("punkt")
@@ -17,9 +19,10 @@ stemmer = SnowballStemmer("spanish")
 
 # In KB, MB or GB
 # We use MB
-BLOCK_SIZE = 2 * 10**7
+BLOCK_SIZE = 0.5 * 10**7
 MEMORY_SIZE = 512 * 10**7
 MAX_BLOCKS = MEMORY_SIZE // BLOCK_SIZE
+MAX_DOCS = 500
 
 # 1. Definir el stoplist
 with open("stoplist.txt", "r", encoding="latin-1") as fil:
@@ -49,13 +52,15 @@ def preprocesamiento(texto):
 
 
 class InvertIndex:
-    def __init__(self):
+    def __init__(self, path):
         self.index_file_count = 0
+        self.index_dir = path
+        if not os.path.exists(self.index_dir):
+            os.makedirs(self.index_dir)
 
     def build(self, collection_text, position_text):
-        print("inside build")
         index_number = self.index_file_count
-        out_file_path = f"index{index_number}.dat"
+        out_file_path = f"index_{index_number}.dat"
         # the index is the posting list
         # The structure is like:
         # {TERM: [(docID, TF), ...], ...}
@@ -64,10 +69,12 @@ class InvertIndex:
         # I believe, pointers are neccessary because it's possible that not all
         # entries for a term can fit in only 1 page
         index = defaultdict(list)
+        docs = 0
 
         collections_text_np = collection_text.to_numpy()
 
         # Iterate
+        print("N: ", len(collections_text_np))
         for i in range(len(collections_text_np)):
             print("i: ", i)
             # Add extra to current index
@@ -76,24 +83,26 @@ class InvertIndex:
             for word, freq in text_freq.items():
                 current = (i, np.log(1 + freq))
                 # If we pass the limit of the page, we save and create a new index
-                if total_size(index) + total_size(current) > BLOCK_SIZE:
+                # if total_size(index) + total_size(current) > BLOCK_SIZE:
+                if docs + 1 > MAX_DOCS:
                     print("index: ", index_number)
                     # we aren't sorting, so it needs to be done when we merge it
-                    with open(out_file_path, "wb") as f:
+                    with open(os.path.join(self.index_dir, out_file_path), "wb") as f:
                         pickle.dump(index, f)
                     index_number += 1
-                    out_file_path = f"index{index_number}.dat"
+                    out_file_path = f"index_{index_number}.dat"
+                    docs = 0
                     index.clear()
                 # We still have space, so we add the current value
-                else:
-                    index[word].append(current)
+                index[word].append(current)
+                docs += 1
 
         # If there are remaining elements in the current intdex, we must save
         # them
         if len(index) > 0:
             print("index: ", index_number)
             # we aren't sorting, so it needs to be done when we merge it
-            with open(out_file_path, "wb") as f:
+            with open(os.path.join(self.index_dir, out_file_path), "wb") as f:
                 pickle.dump(index, f)
             index_number += 1
             out_file_path = f"index{index_number}.dat"
@@ -104,25 +113,26 @@ class InvertIndex:
         # everythings is in place
         # groups is the number of current partitions. We iterate until groups
         # is 1, meaning all has been merged into 1 group
-        groups = index_number // MAX_BLOCKS
+
+        groups = index_number // (MAX_BLOCKS - 1)
         start = 0
-        while groups > 1:
-            for i in range(groups):
-                blocks = defaultdict(list)
-                for i in range(start, start + MAX_BLOCKS):
-                    path = f"index{i}.data"
-                    with open(path, "rb") as f:
-                        current_index = pickle.load(f)
-                        for term, docs in current_index.items():
-                            # Heap can be used according to the professor
-                            # For now, the docs with thier tf are saved in a
-                            # list
-                            blocks[term].extend(docs)
-                # COMPLETE
-
-                start += MAX_BLOCKS
-
-            groups = groups / 2
+        count = 1
+        # Loops while until the are no more groups
+        while groups > 0:
+            last_free = 0
+            start = 0
+            print("groups: ", groups)
+            for i in range(groups + 1):
+                print("ig: ", i)
+                print("start: ", start)
+                print("min: ", min(start + (MAX_BLOCKS - 1) * count, index_number))
+                for j in range(
+                    start, min(start + (MAX_BLOCKS - 1) * count, index_number)
+                ):
+                    print("j: ", j)
+                start += (MAX_BLOCKS - 1) * count
+            groups //= 2
+            count += 1
 
     def retrieve(self, query, k):
         # TODO
