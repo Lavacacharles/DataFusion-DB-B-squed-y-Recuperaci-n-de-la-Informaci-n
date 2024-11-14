@@ -125,7 +125,6 @@ class InvertIndex:
             for i in range(groups + 1):
                 print("ig: ", i)
                 print("start: ", start)
-                print("min: ", min(start + (MAX_BLOCKS - 1) * count, index_number))
                 for j in range(
                     start, min(start + (MAX_BLOCKS - 1) * count, index_number)
                 ):

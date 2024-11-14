@@ -13,10 +13,11 @@ def mostrarDocumentos(result):
         print(i)
 
 
-index = InvertIndex()
+index = InvertIndex("ftest")
 print("index created")
 index.build(dataton, 1)  # El texto a procesar esta en la posicion 1
 print("index built")
+
 
 # Query1 = "Love is a feeling "
 # result = index.retrieval(Query1, 10)
