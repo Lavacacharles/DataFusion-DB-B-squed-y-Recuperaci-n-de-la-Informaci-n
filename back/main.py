@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from compiler import SQLCompiler
+from compiler import SQLParameterExtractor
 
 app = Flask(__name__)
 
@@ -17,9 +17,22 @@ def search():
         if 'query' not in body:
             return jsonify({"error": "Missing 'query' field"}), 400
             
-        compiler = SQLCompiler()
-        results = compiler.process_query(body['query'])
-        return jsonify(results)
+        compiler = SQLParameterExtractor()
+        for query in body['query'].split(';'):
+            query = query.strip()
+            if not query:
+                continue
+                
+            operation, params = compiler.process_query(query)
+            if operation == "CREATE_TABLE":
+                print("CREATE TABLE", params)
+            elif operation == "CREATE_INDEX":
+                print("CREATE INDEX", params)
+            elif operation == "SELECT":
+                print("SELECT", params)
+            else:
+                print("UNKNOWN", params)
+        return jsonify({"status": "ok"})
         
     except Exception as e:
         return jsonify({"error": str(e)}), 500

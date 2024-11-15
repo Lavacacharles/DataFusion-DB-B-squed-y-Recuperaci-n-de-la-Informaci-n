@@ -1,162 +1,141 @@
 import re
-from typing import List
+from typing import Dict, List, Optional, Tuple
+from dataclasses import dataclass
 
-def extract_type(s: str) -> int:
-    # Simulación del tipo de archivo
-    print(f"Extracting type for {s}")
-    if "hash" in s.lower():
-        return 0
-    elif "avl" in s.lower():
-        return 1
-    elif "sequential" in s.lower():
-        return 2
-    return -1
+@dataclass
+class CreateTableParams:
+    table_name: str
+    file_path: str
+    columns: List[str] = None
 
-def extract_numbers_between(text: str) -> List[str]:
-    pattern = r"(\d+)\s+and\s+(\d+)"
-    match = re.search(pattern, text)
-    if match:
-        return [match.group(1), match.group(2)]
-    return []
+@dataclass
+class CreateIndexParams:
+    index_name: str
+    table_name: str
+    column_name: str
+    language: str
 
-def separate_id_data(text: str) -> List[str]:
-    parts = text.split(',', 1)
-    return parts if len(parts) == 2 else []
+@dataclass
+class SelectParams:
+    columns: List[str]
+    table_name: str
+    search_column: str
+    search_phrase: str
+    limit: int
 
-class SQLCompiler:
+class SQLParameterExtractor:
     def __init__(self):
-        pass
+        self.last_error = None
+        
+    def _clean_string(self, text: str) -> str:
+        """Limpia el texto de comillas extras y espacios"""
+        return text.strip().strip('"').strip("'")
 
-    def _trim(self, text: str) -> str:
-        return text.strip()
-
-    def _split_string(self, text: str, delimiter: str) -> List[str]:
-        return [self._trim(token) for token in text.split(delimiter)]
-
-    def _validate_create_table(self, statement: str) -> List[str]:
-        pattern = r'create\s+table\s+(\w+)\s+from\s+file\s+"([^"]+)"\s+using\s+index\s+(\w+)\("(\w+)"\)'
-        match = re.search(pattern, statement, re.IGNORECASE)
+    def extract_create_table_params(self, query: str) -> Optional[CreateTableParams]:
+        """
+        Extrae parámetros de CREATE TABLE
+        Ejemplo: CREATE TABLE employees FROM FILE "data.csv";
+        """
+        pattern = r'create\s+table\s+(\w+)\s+from\s+file\s+["\']([^"\']+)["\']'
+        match = re.search(pattern, query, re.IGNORECASE)
         
         if not match:
-            return ["Invalid CREATE TABLE syntax"]
-        
-        table_name, file_path, index_type, index_column = match.groups()
-        print(f"CREATE TABLE operation detected")
-        print(f"Table name: {table_name}")
-        print(f"File path: {file_path}")
-        print(f"Index type: {index_type}")
-        print(f"Index column: {index_column}")
-        
-        if index_type == "hash":
-            print("Creating hash table...")
-        elif index_type == "avl":
-            print("Creating AVL table...")
-        elif index_type == "sequential":
-            print("Creating sequential file...")
+            self.last_error = "Invalid CREATE TABLE syntax"
+            return None
             
-        return ["CREATE TABLE operation detected", table_name, "Table created successfully"]
+        table_name, file_path = match.groups()
+        return CreateTableParams(
+            table_name=self._clean_string(table_name),
+            file_path=self._clean_string(file_path)
+        )
 
-    def _validate_select(self, statement: str) -> List[str]:
-        pattern = r'select\s+from\s+(\w+)\s+where\s+(\w+)\s*(=|between)\s*(.*)'
-        match = re.search(pattern, statement, re.IGNORECASE)
+    def extract_create_index_params(self, query: str) -> Optional[CreateIndexParams]:
+        """
+        Extrae parámetros de CREATE INDEX
+        Ejemplo: CREATE INDEX 'desc_index' ON 'employees' USING GIN('description') AND LANGUAGE('spanish');
+        """
+        pattern = r"create\s+index\s+['\"]([^'\"]+)['\"]\s+on\s+['\"]([^'\"]+)['\"]\s+using\s+gin\(['\"]([^'\"]+)['\"]\)\s+and\s+language\(['\"]([^'\"]+)['\"]\)"
+        match = re.search(pattern, query, re.IGNORECASE)
         
         if not match:
-            return ["Invalid SELECT syntax"]
+            self.last_error = "Invalid CREATE INDEX syntax"
+            return None
             
-        table_name, column, operator, value = match.groups()
+        index_name, table_name, column_name, language = match.groups()
+        return CreateIndexParams(
+            index_name=self._clean_string(index_name),
+            table_name=self._clean_string(table_name),
+            column_name=self._clean_string(column_name),
+            language=self._clean_string(language)
+        )
+
+    def extract_select_params(self, query: str) -> Optional[SelectParams]:
+        """
+        Extrae parámetros de SELECT
+        Ejemplo: SELECT name, description FROM 'employees' WHERE 'description' @@ 'engineer & software' LIMIT 10;
+        """
+        pattern = r"select\s+([^']+?)\s+from\s+['\"]([^'\"]+)['\"]\s+where\s+['\"]([^'\"]+)['\"]\s+@@\s+['\"]([^'\"]+)['\"]\s+limit\s+(\d+)"
+        match = re.search(pattern, query, re.IGNORECASE)
         
-        if operator == "between":
-            print("SEARCH RANGE operation detected")
-            table_type = extract_type(table_name)
-            print(f"Table type: {table_type}")
-            range_values = extract_numbers_between(value)
-            print(f"Range search: {range_values[0]} to {range_values[1]}")
-            return ["SEARCH RANGE operation detected", f"Found records in range {range_values[0]} to {range_values[1]}"]
+        if not match:
+            self.last_error = "Invalid SELECT syntax"
+            return None
+            
+        columns_str, table_name, search_column, phrase, limit = match.groups()
+        
+        # Procesar columnas
+        columns = [col.strip() for col in columns_str.split(',')]
+        
+        return SelectParams(
+            columns=columns,
+            table_name=self._clean_string(table_name),
+            search_column=self._clean_string(search_column),
+            search_phrase=self._clean_string(phrase),
+            limit=int(limit)
+        )
+
+    def process_query(self, query: str) -> Tuple[str, Optional[object]]:
+        """
+        Procesa una query y retorna el tipo de operación y sus parámetros
+        """
+        query = query.strip()
+        first_word = query.split()[0].lower()
+        
+        if first_word == "create":
+            if "index" in query.lower():
+                params = self.extract_create_index_params(query)
+                return "CREATE_INDEX", params
+            else:
+                params = self.extract_create_table_params(query)
+                return "CREATE_TABLE", params
+        elif first_word == "select":
+            params = self.extract_select_params(query)
+            return "SELECT", params
         else:
-            print("SEARCH operation detected")
-            table_type = extract_type(table_name)
-            print(f"Table type: {table_type}")
-            print(f"Searching for key: {value}")
-            return ["SEARCH operation detected", f"Found record with key {value}"]
-
-    def _validate_insert(self, statement: str) -> List[str]:
-        pattern = r'insert\s+into\s+(\w+)\s+values\s*\((.*)\)'
-        match = re.search(pattern, statement, re.IGNORECASE)
-        
-        if not match:
-            return ["Invalid INSERT syntax"]
-            
-        table_name, values = match.groups()
-        print("INSERT operation detected")
-        table_type = extract_type(table_name)
-        print(f"Table type: {table_type}")
-        print(f"Inserting values: {values}")
-        return ["INSERT operation detected", f"Inserted values: {values}"]
-
-    def _validate_delete(self, statement: str) -> List[str]:
-        pattern = r'delete\s+from\s+(\w+)\s+where\s+(\w+)\s*=\s*(.*)'
-        match = re.search(pattern, statement, re.IGNORECASE)
-        
-        if not match:
-            return ["Invalid DELETE syntax"]
-            
-        table_name, column, value = match.groups()
-        print("REMOVE operation detected")
-        table_type = extract_type(table_name)
-        print(f"Table type: {table_type}")
-        print(f"Deleting record with key: {value}")
-        return ["REMOVE operation detected", f"Deleted record with key {value}"]
-
-    def process_query(self, query: str) -> str:
-        statements = self._split_string(query, ';')
-        results = []
-        
-        for statement in statements:
-            if not statement:
-                continue
-                
-            try:
-                command = statement.strip().lower().split()[0]
-                if command == "create":
-                    results.append(self._validate_create_table(statement))
-                elif command == "select":
-                    results.append(self._validate_select(statement))
-                elif command == "insert":
-                    results.append(self._validate_insert(statement))
-                elif command == "delete":
-                    results.append(self._validate_delete(statement))
-                else:
-                    print(f"Unknown command: {command}")
-            except Exception as e:
-                print(f"Error processing statement: {statement}")
-                print(f"Error: {str(e)}")
-                
-        return 'name,age,city,occupation,salary,department\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation';
-        # return results
+            self.last_error = f"Unknown command: {first_word}"
+            return "UNKNOWN", None
 
 def main():
-    compiler = SQLCompiler()
+    # Ejemplos de uso
+    extractor = SQLParameterExtractor()
     
-    # Test queries
-    queries = [
-        'create table customer from file "../datos_small.csv" using index hash("Codigo");',
-        'create table customeravl from file "../datos_small.csv" using index avl("Codigo");',
-        'select from Customer where Codigo = 1;',
-        'select from CustomerAVL where Codigo = 1;',
-        'select from Customer where Codigo between 22 and 32;',
-        'select from CustomerAVL where Codigo between 22 and 32;',
-        'insert into Customer values (3,John,Doe,5);',
-        'insert into CustomerAVL values (3,John,Doe,5);',
-        'select from Customer where Codigo = 3;',
-        'select from CustomerAVL where Codigo = 3;',
-        'delete from Customer where Codigo = 3;',
-        'delete from CustomerAVL where Codigo = 3;'
+    test_queries = [
+        'CREATE TABLE employees FROM FILE "data/employees.csv";',
+        'CREATE INDEX "content_idx" ON "employees" USING GIN("description") AND LANGUAGE("spanish");',
+        'SELECT name, position, department FROM "employees" WHERE "description" @@ "software & engineer" LIMIT 5;'
     ]
     
-    for query in queries:
-        print(f"\nProcessing query: {query}")
-        results = compiler.process_query(query)
-        print("Results:", results)
+    for query in test_queries:
+        print("\nProcessing query:", query)
+        operation, params = extractor.process_query(query)
+        
+        print(f"Operation: {operation}")
+        if params:
+            print("Parameters extracted:")
+            for key, value in params.__dict__.items():
+                print(f"  {key}: {value}")
+        else:
+            print(f"Error: {extractor.last_error}")
         print("-" * 50)
 
 if __name__ == "__main__":
