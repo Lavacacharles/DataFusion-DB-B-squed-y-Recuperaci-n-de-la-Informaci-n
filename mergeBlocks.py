@@ -1,5 +1,5 @@
 import math
-
+import pickle
 '''
 Pasa los diccionarios de términos a listas,
 los ordena por término y luego cada posting 
@@ -15,6 +15,7 @@ def OrdenarPorBloques(dir_blocks, n_blocks):
         tuplas_ordenadas = [(term[0], list(term[1].items())) for term in file]
         with open(file_path, 'wb') as f:
             pickle.dump(tuplas_ordenadas, f)
+
 def mergeSortAux(dir_bloques, l, r):
     if l == r:
         bloque = leer_bloque(dir_bloques, l)
