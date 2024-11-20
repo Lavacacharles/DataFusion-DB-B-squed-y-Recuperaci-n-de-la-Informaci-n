@@ -4,7 +4,7 @@ import pandas as pd
 
 df = pd.read_csv("spotify_songs.csv")
 df_selected = df.loc[
-    df["language"] == "en",
+    :,
     [
         "track_id",
         "lyrics",
