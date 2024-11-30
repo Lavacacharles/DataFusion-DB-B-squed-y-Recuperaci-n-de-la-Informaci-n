@@ -1,0 +1,1 @@
+{"dimension": 32, "buffering_capacity": 100, "leaf_capacity": 50, "index_capacity": 100, "fill_factor": 0.7, "pagesize": 4096, "variant": "rtstar"}
