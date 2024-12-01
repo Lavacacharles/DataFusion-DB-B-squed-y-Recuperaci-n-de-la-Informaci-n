@@ -24,3 +24,8 @@ Incluye la versión de cpu.
 ```sh
 pip install faiss-gpu
 ```
+
+## Files required
+
+En este drive hay un índice ya listo para usar. Entrenado con 2048 características
+[link](https://drive.google.com/drive/folders/1Y_iCgfZCSZ6IQ9Rw1DSpxZuRUiWXMqEI?usp=sharing)

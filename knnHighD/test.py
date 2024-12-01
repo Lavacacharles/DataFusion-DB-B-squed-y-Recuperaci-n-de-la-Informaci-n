@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from knn_high import load_index, search
+from knn_high import load_index, search, create_index
 import pickle
 import numpy as np
 import time
@@ -20,6 +20,9 @@ for i in dataset_nested:
     if len(i["embedding"]) == 0:
         continue
     feature_vectors.append(i["embedding"][0])
+
+# This creates the index
+# index, image_names = create_index(dataset_path)
 
 feature_vectors = np.array(feature_vectors)
 feature_vectors = feature_vectors.astype("float32")

@@ -44,15 +44,12 @@ def create_index(dataset_path, gpu=False, save=False):
         res = faiss.StandardGpuResources()  # use a single GPU
         # make it an IVF GPU index
         gpu_index_ivf = faiss.index_cpu_to_gpu(res, 0, index_ivf)
-        if not gpu_index_ivf.is_trained:
-            # train with the vectors. Needs to be done because the gpu is used
-            gpu_index_ivf.train(feature_vectors)
-
-        gpu_index_ivf.add(feature_vectors)  # add vectors to the index
-
         index_ivf = gpu_index_ivf
-    else:
-        index_ivf.add(feature_vectors)
+
+    # train with the vectors. Needs to be done the first time
+    if not index_ivf.is_trained:
+        index_ivf.train(feature_vectors)
+    index_ivf.add(feature_vectors)
 
     if save:
         faiss.write_index(index_ivf, "index.faiss")
