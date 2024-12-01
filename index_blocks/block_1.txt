@@ -1,0 +1,1366 @@
+1: {"22": 1, "38": 1, "43": 1}
+10k: {"34": 1}
+2: {"26": 1}
+2014: {"31": 1}
+2016: {"46": 1}
+4: {"25": 1}
+40: {"21": 1}
+5: {"38": 1}
+6: {"26": 1}
+8ths: {"27": 2}
+aaliy: {"31": 1}
+abr: {"24": 1}
+acaramelao: {"44": 1}
+accroupi: {"34": 1}
+accus: {"40": 1}
+acr: {"34": 2}
+acuerd: {"44": 1}
+adapta: {"44": 1}
+adieu: {"34": 1}
+advantag: {"40": 1}
+advers: {"40": 1}
+africano: {"28": 2}
+agita: {"28": 1}
+agua: {"24": 1}
+ahh: {"25": 4}
+aim: {"30": 8, "34": 2}
+aimerai: {"30": 6}
+ain: {"21": 3, "26": 6, "27": 23, "40": 2}
+air: {"34": 1}
+al: {"43": 3}
+algéri: {"34": 1}
+aliv: {"25": 4}
+alji: {"32": 1}
+all: {"43": 6}
+allang: {"43": 2}
+alleg: {"40": 1}
+allow: {"40": 1}
+allí: {"28": 1}
+alma: {"28": 6}
+aloca: {"44": 4}
+alsof: {"43": 1}
+ama: {"32": 1}
+amaaz: {"31": 1}
+amaz: {"27": 2, "40": 1}
+ami: {"34": 1}
+amor: {"28": 1}
+amour: {"30": 4}
+andwa: {"32": 1}
+ane: {"32": 1}
+anheulg: {"32": 1}
+appli: {"40": 1}
+apretao: {"44": 6}
+apunta: {"44": 1}
+aquella: {"28": 1}
+aqui: {"24": 2}
+aquí: {"28": 1}
+argh: {"44": 1}
+arm: {"34": 2}
+armani: {"44": 1}
+arriba: {"44": 12}
+arroyo: {"28": 1}
+asap: {"40": 1}
+asleep: {"35": 1}
+ass: {"21": 2, "27": 2, "40": 1}
+así: {"28": 1}
+atentament: {"44": 1}
+atlant: {"31": 1}
+attaqu: {"34": 1}
+attract: {"29": 2}
+avec: {"34": 2}
+avenida: {"44": 1}
+avoir: {"30": 1}
+awak: {"38": 1}
+aye: {"31": 2}
+ayi: {"21": 1}
+ayyyyyi: {"24": 2}
+año: {"28": 1}
+aún: {"28": 2}
+babe: {"31": 1}
+babi: {"30": 8, "31": 3, "32": 2, "33": 18}
+bacalao: {"44": 1}
+backstag: {"25": 2}
+bad: {"21": 1, "38": 1}
+baddest: {"33": 4}
+baggio: {"34": 1}
+baila: {"44": 10}
+bailando: {"44": 2}
+baiser: {"34": 1}
+balad: {"34": 1}
+balkg: {"32": 1}
+ball: {"26": 3, "27": 2, "34": 4, "40": 1}
+ballon: {"34": 1}
+bam: {"32": 1}
+bamhaneul: {"32": 2}
+bamhaneur: {"32": 3}
+bamsaewo: {"32": 1}
+bangin: {"30": 6}
+barbecu: {"40": 1}
+bare: {"40": 1}
+barkin: {"27": 2}
+batistuta: {"34": 1}
+beach: {"31": 1}
+beat: {"25": 2, "27": 6, "31": 2}
+beauti: {"42": 14}
+beauté: {"34": 1}
+beaux: {"34": 1}
+bebeto: {"34": 1}
+bed: {"33": 2, "36": 1}
+belief: {"40": 1}
+believ: {"40": 1}
+belong: {"30": 1}
+ben: {"43": 5}
+benjamin: {"35": 1}
+bent: {"43": 13}
+benzo: {"27": 2}
+bené: {"34": 49}
+benébelek: {"34": 2}
+benéchico: {"34": 2}
+besaban: {"28": 1}
+besot: {"24": 1}
+bet: {"27": 2, "39": 1, "40": 1}
+bicceul: {"32": 2}
+biccnaneun: {"32": 1}
+bichwojwo: {"32": 1}
+bicrav: {"34": 1}
+bien: {"34": 1, "44": 18}
+bigger: {"30": 1}
+biggest: {"26": 3}
+bij: {"43": 6}
+bil: {"34": 1}
+billet: {"34": 1}
+bimil: {"32": 2}
+bitch: {"21": 1}
+bitin: {"27": 2}
+black: {"27": 6, "39": 1}
+blast: {"21": 1}
+bless: {"29": 2}
+blew: {"25": 2}
+block: {"21": 1}
+blood: {"40": 4}
+blow: {"21": 1}
+blue: {"35": 1}
+blusa: {"44": 1}
+boat: {"31": 1, "38": 1}
+boca: {"24": 1}
+bodi: {"31": 1, "33": 10, "43": 9, "44": 1}
+bold: {"40": 1}
+bomb: {"40": 1}
+bong: {"30": 13}
+bongo: {"30": 28}
+boogi: {"24": 1, "30": 4}
+boom: {"31": 18}
+boomin: {"27": 2}
+boommmm: {"31": 3}
+booooomm: {"31": 3}
+boooooomm: {"31": 3}
+boot: {"27": 2, "35": 1}
+born: {"40": 4}
+bottl: {"39": 1}
+bought: {"25": 2}
+bound: {"45": 3}
+bouquet: {"34": 1}
+boussa: {"34": 2}
+bout: {"26": 3, "27": 2}
+box: {"25": 27, "36": 1}
+brain: {"40": 1}
+break: {"27": 4, "33": 2, "36": 20}
+breath: {"31": 2, "40": 5}
+breed: {"27": 16}
+bring: {"31": 1}
+bro: {"21": 1}
+broad: {"26": 3}
+broken: {"39": 1}
+brother: {"22": 1}
+brown: {"31": 1}
+brésilienn: {"34": 4}
+bubbl: {"40": 1}
+built: {"40": 1}
+burn: {"45": 6}
+busi: {"27": 2}
+butt: {"40": 1}
+buurt: {"43": 6}
+buzzkil: {"21": 1}
+buzzsaw: {"21": 1}
+byeol: {"32": 1}
+byle: {"34": 1}
+caballero: {"28": 1}
+cachet: {"44": 1}
+cada: {"44": 1}
+cadena: {"28": 1}
+cage: {"40": 1}
+cake: {"33": 2}
+calimero: {"34": 1}
+call: {"28": 1}
+calor: {"31": 1}
+calum: {"39": 1}
+canto: {"44": 1}
+capabl: {"40": 2}
+capitan: {"44": 1}
+capitn: {"44": 1}
+car: {"26": 6, "34": 1, "38": 1}
+caramelo: {"34": 1}
+cartagena: {"28": 1}
+cash: {"26": 3}
+castro: {"28": 1}
+catch: {"26": 6}
+caught: {"27": 2}
+causin: {"27": 2}
+ce: {"34": 1}
+cent: {"34": 2}
+cerdito: {"44": 1}
+ces: {"34": 1}
+chaeun: {"32": 3}
+chainz: {"26": 4}
+challeng: {"40": 1}
+chambaracaté: {"28": 1}
+chambaracaténo: {"28": 1}
+chanc: {"27": 2}
+chang: {"25": 2, "26": 3, "27": 2}
+chao: {"30": 1}
+char: {"34": 1}
+charcoal: {"40": 1}
+check: {"38": 1}
+chelito: {"28": 1}
+chemistri: {"29": 2}
+cheroke: {"27": 2}
+chica: {"34": 1}
+chick: {"26": 3}
+chico: {"34": 6}
+chier: {"34": 1}
+chombo: {"28": 1}
+choos: {"37": 1}
+chose: {"26": 3}
+chris: {"31": 1}
+christma: {"38": 1}
+christoph: {"40": 1}
+chrome: {"27": 2}
+circl: {"39": 1}
+citi: {"27": 4, "30": 2}
+clandestino: {"30": 1}
+class: {"21": 1}
+claus: {"38": 21}
+climb: {"40": 1}
+clip: {"21": 1}
+clock: {"27": 4}
+clope: {"34": 1}
+close: {"26": 12, "31": 1, "32": 4}
+cloth: {"35": 1}
+clover: {"27": 2}
+clown: {"30": 1, "40": 1}
+club: {"26": 3}
+cobra: {"27": 2}
+cock: {"40": 1}
+coco: {"24": 1}
+code: {"26": 3, "33": 2}
+coffr: {"34": 1}
+cole: {"29": 1}
+come: {"38": 1}
+comin: {"38": 20}
+comm: {"34": 1}
+comment: {"34": 2}
+como: {"24": 4, "44": 2}
+compact: {"21": 1}
+condamné: {"34": 1}
+confetti: {"33": 1}
+congo: {"30": 2}
+conmigo: {"44": 3}
+connect: {"29": 2}
+constant: {"31": 3}
+contarl: {"28": 1}
+control: {"26": 3, "33": 4}
+controlando: {"44": 1}
+convers: {"26": 3}
+convert: {"40": 1}
+coo: {"38": 1}
+cook: {"26": 3}
+copin: {"34": 1}
+corner: {"39": 4}
+corsica: {"34": 1}
+corta: {"24": 2}
+cost: {"40": 1}
+couill: {"34": 1}
+coupl: {"45": 1}
+crack: {"21": 1}
+crash: {"26": 3}
+crazi: {"30": 3}
+creada: {"44": 1}
+crier: {"34": 1}
+croi: {"34": 1}
+croir: {"30": 1}
+cross: {"37": 1}
+crowd: {"25": 2}
+crown: {"26": 3, "30": 3}
+cruel: {"27": 2}
+crumbl: {"27": 2}
+cruza: {"44": 1}
+crypto: {"33": 2}
+cuando: {"28": 2, "44": 9}
+cunani: {"44": 1}
+cur: {"38": 1}
+custom: {"33": 2}
+cut: {"21": 2, "40": 1}
+cutter: {"21": 1}
+cuz: {"27": 2, "33": 6}
+cypher: {"40": 1}
+cypress: {"40": 1}
+da: {"34": 1}
+daar: {"43": 2}
+daba: {"28": 1}
+dagaga: {"32": 1}
+dagagago: {"32": 1}
+dalbicc: {"32": 1}
+dalbicceuro: {"32": 1}
+dalbicci: {"32": 3}
+dale: {"24": 3}
+dame: {"24": 1}
+dan: {"34": 7, "43": 2}
+danc: {"27": 2, "39": 7}
+danger: {"26": 9}
+dark: {"26": 3}
+dash: {"21": 1}
+dasi: {"32": 3}
+dat: {"43": 4}
+day: {"25": 4, "26": 12}
+dead: {"27": 2}
+death: {"26": 6, "40": 1}
+debajo: {"44": 1}
+deceiv: {"45": 1}
+deci: {"24": 1}
+deep: {"30": 2}
+del: {"24": 1, "44": 2}
+delen: {"44": 1}
+deo: {"32": 5}
+derrièr: {"34": 1}
+des: {"34": 3}
+desir: {"45": 3}
+dfc: {"27": 3}
+di: {"34": 1}
+diamond: {"43": 2}
+dice: {"28": 3}
+dichter: {"43": 6}
+dichterbij: {"43": 3}
+die: {"26": 18, "39": 2, "43": 3, "45": 3}
+diga: {"28": 1}
+dinero: {"44": 1}
+dingu: {"34": 4}
+dinmico: {"44": 1}
+dinner: {"40": 1}
+direct: {"29": 2}
+dirti: {"30": 1}
+dis: {"34": 1}
+disagreein: {"27": 2}
+disco: {"33": 2}
+disparaîtr: {"34": 1}
+diss: {"27": 2}
+distant: {"25": 2}
+doe: {"43": 1}
+doen: {"43": 1}
+dog: {"26": 3, "27": 2}
+doll: {"38": 1}
+dollar: {"27": 4}
+dongan: {"32": 1}
+door: {"25": 2, "27": 2, "31": 1, "43": 1}
+dos: {"44": 1}
+doubl: {"21": 1, "27": 4}
+doubt: {"40": 1}
+downpour: {"25": 2}
+drawn: {"40": 1}
+dreamcatch: {"32": 1}
+dring: {"34": 18}
+drink: {"33": 4}
+drive: {"31": 1, "36": 1, "37": 1, "42": 2}
+drop: {"27": 6}
+drum: {"38": 1}
+du: {"34": 1}
+dulmanui: {"32": 2}
+duo: {"44": 2}
+dwae: {"32": 2}
+dy: {"30": 1}
+dyin: {"27": 2}
+ear: {"25": 2}
+easi: {"45": 1}
+eat: {"27": 2, "31": 1}
+edit: {"29": 1, "36": 1, "41": 1}
+een: {"43": 3}
+ehh: {"44": 6}
+el: {"24": 2, "28": 10, "44": 18}
+eleph: {"38": 1}
+ell: {"34": 2}
+ella: {"24": 3, "44": 15, "46": 1}
+em: {"27": 2, "40": 3}
+emborracha: {"44": 1}
+eminem: {"40": 1}
+emot: {"29": 2, "40": 1}
+empezo: {"46": 1}
+empolvao: {"44": 1}
+empow: {"40": 1}
+en: {"28": 5, "34": 1, "44": 3}
+encanta: {"44": 1}
+encima: {"44": 2}
+ene: {"43": 1}
+engag: {"40": 1}
+entend: {"34": 1}
+eodi: {"32": 1}
+eonjekkajina: {"32": 3}
+eopsi: {"32": 2}
+eopsneungeol: {"32": 1}
+ere: {"24": 1}
+eric: {"27": 2}
+erri: {"33": 2}
+esa: {"28": 1}
+esclavitud: {"28": 3}
+esclavo: {"28": 1}
+escucha: {"28": 3}
+ese: {"44": 1}
+eso: {"28": 1, "44": 2}
+espacio: {"44": 1, "46": 1}
+español: {"28": 1}
+espoir: {"30": 1}
+est: {"34": 1}
+esto: {"24": 1}
+etern: {"31": 1}
+everyday: {"31": 6}
+evolv: {"40": 1}
+expand: {"25": 1}
+extermin: {"21": 1}
+eye: {"25": 20, "26": 9, "35": 1}
+fai: {"34": 2}
+fair: {"34": 1}
+fait: {"34": 4}
+fall: {"21": 1, "26": 3, "35": 1, "45": 1}
+fals: {"40": 1}
+fam: {"26": 6}
+famil: {"31": 1}
+fantica: {"44": 1}
+fast: {"21": 1, "26": 2}
+fat: {"27": 2}
+fatboy: {"33": 2}
+fate: {"29": 2}
+favorit: {"35": 2}
+fear: {"26": 12}
+feat: {"24": 2, "31": 1}
+feel: {"21": 1, "29": 2, "31": 4, "40": 4}
+feelin: {"26": 3, "40": 1}
+feet: {"27": 2, "31": 1}
+feit: {"43": 3}
+feldt: {"37": 1}
+feu: {"34": 1}
+fiend: {"27": 8}
+fiesta: {"24": 7}
+fight: {"29": 2, "40": 1}
+figur: {"27": 2}
+fill: {"43": 2}
+financi: {"26": 3}
+fine: {"26": 3, "44": 1}
+fist: {"40": 1}
+flame: {"45": 6}
+flash: {"27": 2}
+flat: {"40": 1}
+flav: {"27": 2}
+flavor: {"27": 2}
+fli: {"35": 2}
+flicaill: {"34": 1}
+flintston: {"33": 2}
+flip: {"33": 2}
+float: {"40": 1}
+fluid: {"40": 1}
+foam: {"40": 1}
+fofana: {"34": 1}
+fold: {"26": 3}
+follow: {"26": 3, "42": 6}
+foreign: {"25": 1}
+fought: {"40": 1}
+franci: {"35": 1}
+freeli: {"40": 1}
+frequenc: {"42": 1}
+friend: {"39": 1}
+frontiando: {"44": 1}
+frontin: {"27": 17}
+frontua: {"44": 1}
+frères: {"34": 1}
+fuck: {"21": 1, "40": 2}
+fuckin: {"21": 1, "40": 3}
+fue: {"28": 1}
+fuel: {"40": 2}
+fuma: {"24": 2}
+fumé: {"34": 1}
+funk: {"22": 24}
+funki: {"27": 2}
+funni: {"45": 1}
+furious: {"26": 2}
+furthest: {"35": 1}
+futur: {"27": 17}
+fé: {"34": 2}
+gadeuk: {"32": 4}
+game: {"27": 6}
+ganandom: {"46": 1}
+gang: {"34": 2}
+gata: {"32": 1}
+gateun: {"32": 1}
+gati: {"32": 1}
+geek: {"27": 2}
+geon: {"32": 1}
+georeumyeon: {"32": 2}
+ger: {"34": 1}
+gettin: {"26": 3, "27": 4}
+geu: {"32": 3}
+geura: {"32": 1}
+geureohg: {"32": 1}
+geuryeo: {"32": 2}
+geuryeojwo: {"32": 1}
+giant: {"40": 1}
+gieokhaejwo: {"32": 1}
+gieokhalg: {"32": 2}
+gim: {"31": 2}
+gipg: {"32": 1}
+gireul: {"32": 1}
+girl: {"26": 6, "34": 4}
+givin: {"27": 2}
+glass: {"21": 1}
+glock: {"21": 1}
+god: {"26": 6}
+gold: {"27": 2, "33": 4}
+gon: {"25": 6, "26": 3, "27": 4, "33": 2, "36": 1, "38": 1, "40": 9, "45": 6}
+good: {"38": 2}
+goodby: {"39": 1}
+govern: {"27": 2}
+gozan: {"24": 1}
+grab: {"27": 2}
+graduat: {"26": 3}
+grito: {"44": 2}
+groov: {"22": 2}
+gross: {"34": 1}
+ground: {"40": 1}
+groupi: {"34": 1}
+growin: {"40": 1}
+gto: {"27": 2}
+guapo: {"28": 1}
+guaraguao: {"44": 1}
+guill: {"44": 6}
+guilla: {"44": 6}
+guilt: {"40": 1}
+guin: {"44": 1}
+guitar: {"25": 12}
+gun: {"26": 3}
+gunpowd: {"40": 1}
+gunshot: {"26": 3}
+guy: {"39": 4}
+gwisga: {"32": 1}
+gyeot: {"32": 1}
+ha: {"27": 6}
+hace: {"24": 2}
+haciendo: {"44": 1}
+hah: {"24": 2}
+hair: {"38": 1}
+hamkkehaessdeon: {"32": 1}
+hamkkeil: {"32": 1}
+hananikka: {"32": 1}
+hand: {"25": 2, "31": 1, "40": 2}
+haneur: {"32": 1}
+haneurui: {"32": 1}
+hang: {"30": 2, "40": 1}
+hangul: {"32": 1}
+happi: {"27": 2, "30": 1}
+hard: {"26": 3, "27": 2, "36": 3}
+hat: {"21": 1}
+hayabusa: {"44": 1}
+head: {"21": 1, "25": 2}
+heal: {"36": 3}
+hear: {"30": 8}
+heard: {"25": 4}
+heart: {"31": 3, "35": 4, "36": 20, "45": 1}
+hearti: {"27": 2}
+heavi: {"25": 2}
+heb: {"43": 2}
+heeft: {"43": 1}
+heen: {"43": 1}
+heh: {"21": 1}
+hermano: {"28": 1}
+hero: {"25": 27}
+het: {"43": 8}
+hey: {"24": 8, "27": 2}
+hijo: {"34": 1}
+hill: {"40": 1}
+himno: {"24": 1}
+hip: {"33": 2}
+historia: {"28": 3, "44": 2}
+hit: {"21": 2, "29": 2, "40": 1}
+hittin: {"27": 2}
+ho: {"21": 1}
+hola: {"34": 8}
+hold: {"40": 1}
+holler: {"27": 2}
+homeboy: {"27": 2}
+homi: {"27": 2}
+honéon: {"34": 1}
+hoo: {"38": 4}
+hop: {"21": 1, "31": 1}
+hope: {"35": 7}
+horn: {"38": 1}
+hot: {"31": 1, "33": 38}
+hottest: {"33": 6}
+hous: {"27": 2, "35": 1}
+hoy: {"24": 4}
+hsmn: {"43": 1}
+hung: {"25": 2}
+hurt: {"36": 4}
+ietsj: {"43": 3}
+igo: {"34": 1}
+ik: {"43": 13}
+illeg: {"27": 2}
+illuminati: {"33": 4}
+imposs: {"40": 4}
+infin: {"31": 5}
+info: {"33": 2}
+inquièt: {"34": 1}
+inspir: {"40": 1}
+interesant: {"44": 1}
+interior: {"44": 1}
+intro: {"27": 2}
+ireohg: {"32": 1}
+ireon: {"32": 1}
+issdamyeon: {"32": 1}
+isseodo: {"32": 1}
+issg: {"32": 3}
+issgessji: {"32": 1}
+ja: {"43": 4}
+jaba: {"32": 1}
+jackson: {"38": 1}
+jajaja: {"44": 1}
+jala: {"44": 1}
+jamai: {"30": 2}
+jamdeul: {"32": 1}
+jamdeureodo: {"32": 1}
+jamsi: {"32": 1}
+jean: {"27": 2}
+jeep: {"27": 2, "31": 1}
+jeo: {"32": 2}
+jesus: {"21": 1}
+jeva: {"28": 1}
+jij: {"43": 17}
+job: {"27": 2}
+joe: {"28": 1}
+jogeum: {"32": 1}
+jogeumssik: {"32": 1}
+johnson: {"22": 1}
+jon: {"24": 1}
+jong: {"43": 3}
+jou: {"43": 1}
+jour: {"30": 4}
+journé: {"34": 1}
+juan: {"24": 1}
+judg: {"26": 6}
+juggernaut: {"40": 1}
+juke: {"25": 27}
+julg: {"32": 2}
+julian: {"31": 1}
+jump: {"27": 2}
+jumpin: {"26": 3}
+jungl: {"29": 2, "30": 3}
+kenwood: {"27": 2}
+key: {"31": 1}
+khalifa: {"26": 6}
+kickin: {"27": 2}
+kiddi: {"38": 1}
+kijk: {"43": 1}
+kill: {"21": 1, "36": 3, "40": 1}
+killer: {"26": 3}
+kilo: {"27": 2}
+king: {"30": 28}
+kiss: {"26": 3, "35": 1, "39": 4}
+kkok: {"32": 3}
+kkumeseo: {"32": 3}
+kkumgyeol: {"32": 1}
+kkwak: {"32": 1}
+klaar: {"43": 2}
+knife: {"40": 1}
+knive: {"26": 3}
+knock: {"21": 1}
+knowin: {"40": 1}
+knowledg: {"27": 2}
+kom: {"43": 9}
+kremont: {"41": 1}
+kthe: {"30": 2}
+kygo: {"35": 2}
+lack: {"21": 1}
+lalo: {"44": 1}
+lap: {"21": 1}
+larm: {"34": 2}
+las: {"44": 2}
+latino: {"44": 1}
+laugh: {"21": 1}
+law: {"27": 2, "29": 2}
+lay: {"40": 1}
+le: {"28": 23, "34": 5, "44": 12}
+leaf: {"27": 2}
+learnt: {"36": 1}
+leav: {"27": 2}
+left: {"36": 1, "40": 3}
+leftwich: {"35": 1}
+legend: {"40": 1}
+legendari: {"40": 1}
+lejito: {"44": 1}
+length: {"40": 4}
+lengua: {"24": 2}
+les: {"28": 1, "30": 4, "34": 4}
+levanta: {"44": 1}
+libro: {"44": 1}
+lichten: {"43": 1}
+lie: {"45": 1}
+liefst: {"43": 1}
+life: {"25": 2, "26": 12, "27": 2, "36": 3, "40": 1, "42": 8}
+light: {"26": 3, "35": 3, "39": 2}
+lil: {"24": 1}
+linda: {"44": 2}
+list: {"38": 1}
+listen: {"27": 4}
+litron: {"34": 1}
+live: {"26": 3, "27": 2, "35": 1, "40": 1}
+llega: {"44": 1}
+llegaban: {"28": 1}
+lo: {"28": 2, "44": 12}
+loca: {"24": 1, "44": 2}
+loco: {"24": 2}
+london: {"36": 1}
+lookin: {"27": 4, "31": 1}
+loos: {"30": 2}
+los: {"28": 1, "44": 4}
+lose: {"26": 3}
+lost: {"29": 2, "42": 1}
+lot: {"30": 1}
+loui: {"36": 1}
+love: {"21": 1, "26": 3, "31": 6, "32": 6, "35": 3, "36": 3, "39": 1, "45": 2}
+lover: {"37": 1}
+lovin: {"33": 4}
+loyalti: {"26": 3}
+lucro: {"44": 1}
+lung: {"40": 4}
+lyric: {"27": 2}
+légend: {"34": 1}
+machi: {"32": 1}
+madr: {"34": 1}
+maeil: {"32": 3}
+maeum: {"32": 1}
+mahn: {"44": 3}
+mahon: {"44": 3}
+makin: {"26": 3, "40": 3}
+mal: {"28": 1}
+malhaejugo: {"32": 1}
+malhaejwo: {"32": 1}
+malhal: {"32": 1}
+mam: {"32": 1}
+mama: {"30": 2}
+mambo: {"30": 2}
+mamcheoreom: {"32": 1}
+mami: {"24": 2}
+man2: {"26": 3}
+manag: {"40": 1}
+mandóla: {"28": 1}
+manheun: {"32": 2}
+mannal: {"32": 3}
+manta: {"44": 1}
+manu: {"30": 1}
+maquilla: {"44": 2}
+maranta: {"44": 1}
+martha: {"40": 1}
+marti: {"27": 2}
+masa: {"44": 1}
+matando: {"44": 1}
+matatan: {"44": 1}
+match: {"40": 2}
+materi: {"26": 3}
+math: {"21": 1}
+matrimonio: {"28": 1}
+medio: {"44": 1}
+medusa: {"44": 1}
+meet: {"27": 2}
+melodi: {"29": 2}
+menal: {"40": 4}
+meomchul: {"32": 1}
+meomulleossdeon: {"32": 1}
+meoreojimyeon: {"32": 1}
+merk: {"41": 1}
+mess: {"36": 3, "39": 1}
+messiest: {"40": 1}
+met: {"43": 3}
+meten: {"44": 1}
+mi: {"24": 2, "28": 5, "44": 2}
+mia: {"34": 1}
+miami: {"31": 1}
+mic: {"27": 4, "40": 1}
+microphonist: {"27": 2}
+mien: {"34": 1}
+mij: {"43": 8}
+milli: {"34": 1}
+mind: {"37": 1}
+mirada: {"44": 1}
+miss: {"29": 2}
+missin: {"33": 4}
+mob: {"26": 3}
+modela: {"44": 4}
+modeun: {"32": 2}
+mogen: {"43": 1}
+moksoriro: {"32": 1}
+moment: {"26": 21, "29": 2}
+mon: {"30": 4, "34": 2}
+mond: {"34": 1}
+money: {"26": 9, "27": 2}
+monkey: {"30": 3}
+monster: {"40": 4}
+moon: {"32": 9}
+mopstick: {"21": 1}
+moreugessjiman: {"32": 2}
+morn: {"35": 3}
+motherfucka: {"33": 6}
+motherfuckin: {"40": 1}
+motion: {"40": 1, "43": 1}
+motiv: {"26": 3}
+moto: {"24": 1}
+motorola: {"27": 2}
+mouah: {"34": 1}
+mountain: {"42": 4}
+mourir: {"30": 6}
+mouth: {"40": 1}
+muev: {"44": 1}
+muldeun: {"32": 4}
+mulona: {"24": 1}
+music: {"22": 4, "39": 2, "40": 1}
+musica: {"44": 1}
+muy: {"24": 1, "28": 1}
+mère: {"34": 1}
+nacer: {"44": 1}
+nacht: {"43": 3}
+nada: {"24": 2, "34": 1}
+nae: {"32": 3}
+naega: {"32": 1}
+nah: {"39": 2}
+nake: {"37": 3}
+nal: {"32": 2}
+nalgona: {"24": 1}
+namaseo: {"32": 1}
+name: {"27": 2}
+naneul: {"32": 1}
+naughti: {"38": 1}
+naui: {"32": 2}
+navidad: {"44": 1}
+nazi: {"44": 1}
+necesito: {"46": 1}
+negra: {"28": 24}
+negrero: {"28": 1}
+negro: {"28": 1}
+neighborhood: {"27": 2}
+nek: {"43": 2}
+nena: {"44": 2}
+neol: {"32": 6}
+neoneun: {"32": 2}
+neoui: {"32": 3}
+neowa: {"32": 6}
+nesti: {"44": 1}
+nice: {"38": 1}
+nick: {"43": 1}
+niemand: {"43": 1}
+niet: {"43": 2}
+nigga: {"21": 13, "27": 2}
+night: {"31": 1, "32": 2, "39": 1}
+nk: {"45": 1}
+nobo: {"30": 1}
+noch: {"44": 1}
+nog: {"43": 4}
+nohji: {"32": 1}
+noir: {"34": 1}
+noos: {"27": 2}
+nosotro: {"44": 1}
+nous: {"34": 2}
+nuestra: {"28": 1}
+nuevament: {"44": 1}
+obsess: {"43": 1}
+obstacl: {"40": 1}
+offset: {"26": 3}
+ogen: {"43": 3}
+ohh: {"39": 1}
+omar: {"46": 1}
+onizuka: {"34": 1}
+ooh: {"23": 44, "31": 2, "39": 2}
+oooh: {"39": 2}
+organizacin: {"44": 1}
+otro: {"44": 1}
+ou: {"34": 1}
+ounc: {"40": 4}
+outbreak: {"26": 3}
+outfit: {"26": 3}
+outlet: {"26": 3}
+oye: {"28": 2, "44": 3}
+pack: {"21": 1, "27": 2}
+paid: {"26": 3}
+paint: {"27": 2, "29": 2}
+palo: {"44": 1}
+papa: {"30": 2}
+paqu: {"24": 1}
+par: {"34": 2}
+para: {"24": 2}
+parahg: {"32": 3}
+parfoi: {"30": 6}
+parti: {"24": 4, "27": 4, "33": 4, "34": 1, "44": 1}
+pas: {"34": 6}
+pasin: {"44": 1}
+pass: {"21": 1, "25": 2, "26": 3, "34": 2, "36": 1}
+passion: {"26": 3}
+pavement: {"27": 2}
+paycat: {"26": 3}
+peac: {"34": 1}
+peak: {"27": 2}
+pedacito: {"28": 1}
+peep: {"27": 2, "33": 2}
+pegam: {"44": 1}
+pegao: {"44": 43}
+pegu: {"28": 22}
+pegó: {"28": 1}
+pein: {"34": 1}
+pens: {"34": 1}
+peopl: {"26": 12, "27": 6, "30": 1}
+pequeno: {"24": 1}
+perfect: {"26": 3}
+pero: {"24": 1, "44": 4}
+perpetua: {"28": 3}
+persever: {"40": 1}
+peur: {"34": 1}
+phe: {"40": 4}
+phenomen: {"40": 18}
+phone: {"27": 2}
+pickin: {"27": 2}
+pico: {"44": 1}
+pictur: {"25": 2, "29": 2, "40": 2}
+pitbul: {"24": 2}
+piti: {"27": 2}
+placemat: {"40": 1}
+plain: {"27": 2}
+plan: {"26": 3}
+plant: {"27": 2}
+plastic: {"26": 3, "40": 1}
+plate: {"40": 1}
+play: {"22": 1, "25": 2, "26": 9, "27": 2, "30": 1}
+playin: {"27": 4}
+plentli: {"26": 3}
+plug: {"26": 3}
+pnl: {"34": 2}
+pocket: {"27": 2}
+pole: {"21": 1}
+polícia: {"34": 1}
+pooki: {"34": 1}
+pop: {"27": 2}
+por: {"28": 1, "44": 5}
+porqu: {"28": 2}
+pose: {"34": 1}
+poss: {"27": 4}
+poucav: {"34": 1}
+pour: {"30": 4, "34": 1}
+pout: {"38": 2}
+power: {"40": 1}
+preocupacion: {"24": 2}
+prepar: {"40": 1}
+presentan: {"44": 1}
+presid: {"27": 2}
+prevail: {"40": 1}
+pride: {"27": 2}
+prieta: {"28": 1}
+proclaim: {"27": 2}
+prove: {"40": 1}
+provoca: {"44": 4}
+pull: {"31": 2}
+pump: {"31": 1}
+punch: {"40": 1}
+purs: {"40": 1}
+puta: {"34": 2}
+putain: {"34": 1}
+puttin: {"27": 2}
+qlf: {"34": 1}
+quand: {"34": 1}
+queen: {"30": 2}
+quick: {"27": 2}
+quickdraw: {"21": 1}
+quier: {"24": 2}
+quiero: {"28": 1}
+quita: {"44": 5}
+rack: {"21": 1}
+racol: {"34": 1}
+radio: {"29": 1, "41": 1}
+rage: {"40": 1}
+rain: {"25": 4, "31": 2}
+rankiao: {"44": 1}
+rap: {"40": 1}
+rappell: {"34": 1}
+rassuré: {"34": 1}
+rat: {"21": 1}
+raw: {"27": 2}
+readi: {"23": 11, "26": 3, "33": 4, "40": 2}
+real: {"40": 1}
+realm: {"40": 1}
+rebelion: {"28": 1}
+record: {"27": 2, "31": 1}
+red: {"26": 3}
+refuerzo: {"44": 1}
+relax: {"21": 1}
+releas: {"22": 4}
+relookésl: {"34": 1}
+remast: {"46": 1}
+remind: {"40": 1}
+remix: {"31": 1, "35": 2, "39": 2}
+rentrer: {"34": 1}
+repeat: {"31": 6}
+reppin: {"26": 3}
+reput: {"40": 1}
+respeta: {"28": 1}
+respond: {"40": 2}
+retali: {"40": 1}
+reveló: {"28": 1}
+revienta: {"28": 1}
+revoir: {"30": 1}
+rhino: {"27": 2}
+rhyme: {"40": 1}
+rican: {"34": 1}
+ride: {"26": 33, "31": 1}
+ridin: {"26": 3, "27": 2}
+rien: {"30": 2}
+rim: {"26": 3, "27": 2}
+rin: {"32": 1}
+river: {"42": 4}
+road: {"36": 1}
+roar: {"25": 2}
+rock: {"25": 8, "27": 2, "31": 2, "33": 2}
+rockin: {"25": 4, "31": 1}
+rodeando: {"44": 1}
+rojo: {"44": 1}
+roll: {"26": 3}
+rollin: {"27": 2}
+roman: {"32": 1}
+romário: {"34": 1}
+rooti: {"38": 1}
+ropa: {"44": 5}
+rough: {"40": 1}
+roughest: {"27": 2}
+roul: {"34": 1}
+rouler: {"34": 1}
+rover: {"27": 2}
+rrrrah: {"24": 1}
+ruin: {"45": 1}
+rule: {"27": 2}
+rump: {"38": 1}
+run: {"27": 2}
+runnin: {"27": 2, "40": 1}
+sabe: {"28": 1, "44": 1}
+sabor: {"28": 1}
+sacart: {"24": 1}
+sacrific: {"40": 1}
+sad: {"35": 1}
+saegyeonoheun: {"32": 1}
+saeppalgan: {"32": 1}
+sak: {"21": 1}
+sake: {"38": 2}
+sale: {"24": 1}
+saliv: {"40": 1}
+salmyeosi: {"32": 1}
+salomé: {"28": 1}
+salsa: {"28": 1}
+salt: {"44": 1}
+sam: {"37": 1}
+sand: {"31": 1}
+santa: {"38": 21}
+savoir: {"30": 1}
+sayin: {"27": 4}
+saymynam: {"23": 1}
+scene: {"25": 2, "27": 2, "31": 1}
+scholar: {"27": 2}
+scott: {"39": 1}
+scrap: {"40": 1}
+scream: {"25": 2}
+screw: {"40": 1}
+sea: {"35": 1}
+secondhand: {"25": 2}
+seek: {"27": 2}
+sega: {"34": 2}
+seisciento: {"28": 1}
+sel: {"32": 1}
+sellin: {"27": 4}
+sentent: {"34": 1}
+servin: {"27": 2}
+sesang: {"32": 2}
+set: {"40": 1}
+sevyn: {"31": 1}
+shade: {"31": 1, "43": 1}
+shadow: {"25": 2}
+sheitana: {"34": 1}
+shelf: {"40": 1}
+shield: {"40": 1}
+shine: {"27": 2, "35": 7}
+shit: {"40": 2}
+shiv: {"40": 1}
+sho: {"33": 4}
+shoot: {"27": 2}
+shop: {"21": 1}
+shot: {"26": 9}
+shove: {"40": 1}
+shut: {"40": 2}
+sient: {"44": 1}
+sientat: {"24": 1}
+siganeul: {"32": 1}
+sigani: {"32": 1}
+sigu: {"24": 6}
+simpli: {"27": 2}
+sin: {"24": 2, "44": 1}
+sing: {"22": 1, "29": 2, "35": 3}
+singl: {"31": 3, "36": 1, "43": 1}
+sipeun: {"32": 1}
+sipeungeol: {"32": 1}
+sippin: {"33": 4}
+sissi: {"40": 1}
+sittin: {"26": 3}
+situat: {"40": 1}
+skip: {"31": 1}
+sky: {"39": 1}
+sleep: {"32": 2, "38": 1}
+slim: {"33": 2}
+slip: {"40": 1}
+slippin: {"27": 2}
+slow: {"26": 3, "31": 1}
+slung: {"25": 2}
+smoke: {"21": 1, "35": 1}
+snow: {"35": 1}
+sober: {"27": 2}
+sociedad: {"44": 2}
+soir: {"34": 1}
+sold: {"25": 2}
+somethin: {"27": 2}
+soneul: {"32": 2}
+song: {"35": 1}
+songtekst: {"43": 1}
+sont: {"34": 1}
+sor: {"34": 3}
+sound: {"27": 6, "30": 2, "31": 1, "35": 2}
+southpaw: {"40": 2}
+spaac: {"31": 1}
+spark: {"40": 1}
+speed: {"33": 2}
+spice: {"33": 4}
+spin: {"39": 1}
+spirit: {"26": 3}
+squad: {"26": 3}
+sta: {"43": 1}
+stand: {"25": 2, "26": 3, "35": 1, "39": 2}
+standin: {"40": 1}
+star: {"25": 20}
+start: {"25": 2, "27": 2, "30": 2}
+statement: {"40": 1}
+static: {"27": 2}
+status: {"40": 1}
+stay: {"40": 1}
+steadi: {"27": 2}
+steel: {"40": 1}
+step: {"27": 2, "40": 1}
+stewart: {"40": 1}
+stick: {"40": 1}
+stiletto: {"39": 1}
+stolen: {"27": 2}
+stomp: {"40": 1}
+store: {"25": 2}
+stove: {"26": 3}
+straight: {"27": 2}
+strap: {"40": 1}
+street: {"29": 2, "31": 1}
+streeter: {"31": 1}
+stress: {"21": 1}
+strict: {"27": 2}
+strike: {"26": 9}
+string: {"25": 2}
+strongest: {"27": 2}
+stuck: {"26": 3, "40": 1}
+stupid: {"21": 1, "39": 1}
+suav: {"43": 32}
+subject: {"40": 1}
+sucker: {"27": 6}
+sudo: {"32": 1}
+sui: {"34": 3}
+summer: {"31": 2}
+sun: {"31": 1, "35": 1}
+sungandeul: {"32": 1}
+sur: {"34": 1}
+survivor: {"40": 1}
+swear: {"29": 2}
+sweat: {"27": 2}
+swing: {"30": 1}
+switch: {"33": 2}
+syn: {"29": 1}
+ta: {"25": 6, "29": 2, "33": 2, "34": 2, "39": 1, "40": 2, "45": 15}
+tabitha: {"43": 2}
+take: {"36": 3, "40": 4}
+takin: {"26": 3, "27": 2}
+talk: {"21": 2}
+también: {"28": 1}
+tani: {"44": 1}
+tap: {"21": 1}
+tast: {"40": 1}
+tat: {"27": 2}
+taught: {"40": 1}
+tb: {"27": 2}
+tchiki: {"34": 2}
+tchikit: {"34": 1}
+te: {"24": 3, "30": 2, "34": 4, "44": 2}
+tear: {"27": 2, "36": 6}
+tech: {"34": 1}
+tell: {"38": 2}
+tellement: {"30": 2}
+temp: {"34": 1}
+tempo: {"33": 2}
+ten: {"27": 2}
+terreno: {"46": 1}
+thigh: {"31": 1}
+thinkin: {"27": 2}
+throwin: {"40": 1}
+thunder: {"31": 2}
+ticket: {"25": 4}
+tien: {"24": 1}
+tierra: {"28": 1}
+time: {"27": 6, "31": 1, "32": 4, "36": 6, "38": 1, "40": 2, "45": 1}
+tin: {"38": 1}
+tirano: {"28": 1}
+tire: {"34": 1}
+tit: {"27": 2}
+tiësto: {"39": 2}
+toca: {"44": 2}
+todo: {"24": 3}
+toma: {"24": 2}
+tomlinson: {"36": 1}
+tomó: {"28": 1}
+tongu: {"40": 1}
+tonight: {"25": 4, "26": 9}
+toot: {"38": 2}
+tootl: {"38": 1}
+totin: {"21": 1}
+touch: {"33": 2, "43": 9}
+touchera: {"34": 4}
+tous: {"30": 4, "34": 1}
+tout: {"34": 1}
+town: {"25": 2, "30": 4, "38": 21, "39": 1}
+toy: {"38": 1}
+tra: {"44": 3}
+trago: {"24": 1}
+trato: {"28": 1}
+tremendo: {"24": 2}
+trigga: {"27": 2}
+trip: {"25": 2}
+true: {"35": 3}
+trunk: {"27": 2}
+truth: {"33": 2, "45": 1}
+tryin: {"40": 1}
+ttaekkaji: {"32": 1}
+ttara: {"32": 1}
+ttaseuhami: {"32": 1}
+tu: {"24": 3, "34": 8, "44": 1}
+tum: {"38": 2}
+tumbao: {"44": 1}
+turnin: {"21": 1}
+type: {"31": 2}
+tête: {"34": 2}
+tú: {"28": 1}
+uh: {"28": 2, "32": 4}
+uit: {"43": 1}
+uju: {"32": 1}
+una: {"24": 5, "44": 1}
+unchart: {"40": 1}
+understand: {"25": 2}
+une: {"34": 2}
+unfollow: {"21": 1}
+unknown: {"40": 2}
+unpopp: {"40": 1}
+unstopp: {"40": 1}
+untopp: {"40": 1}
+uphil: {"40": 1}
+uri: {"32": 2}
+usa: {"44": 1}
+usted: {"28": 1}
+vaart: {"43": 1}
+vacat: {"26": 3}
+vacilon: {"24": 2}
+vai: {"34": 2}
+valid: {"40": 1}
+vall: {"43": 1}
+valv: {"40": 1}
+vamo: {"24": 4, "28": 1}
+van: {"43": 1}
+vaquero: {"44": 2}
+vea: {"24": 1}
+venganza: {"28": 1}
+veo: {"24": 6}
+ver: {"28": 1}
+verja: {"28": 2}
+vers: {"40": 1}
+veut: {"34": 1}
+victor: {"44": 1}
+vida: {"24": 11}
+vien: {"24": 2}
+villa: {"34": 2}
+violet: {"34": 1}
+vivir: {"24": 4}
+vivió: {"28": 1}
+vivr: {"34": 1}
+voi: {"34": 1}
+voir: {"30": 1, "34": 1}
+volviendo: {"44": 1}
+vos: {"44": 1}
+voto: {"24": 1}
+voulu: {"30": 1}
+vuelv: {"44": 2}
+waar: {"43": 2}
+waarop: {"43": 1}
+wack: {"21": 1}
+wage: {"40": 1}
+wagin: {"40": 1}
+wait: {"35": 2}
+waitin: {"40": 1}
+wall: {"25": 2, "40": 2}
+wallac: {"40": 1}
+wan: {"21": 1, "33": 2, "39": 1, "45": 1}
+warm: {"35": 4}
+wat: {"43": 10}
+watch: {"38": 3, "39": 4}
+water: {"35": 1, "40": 1, "43": 1}
+weak: {"31": 1}
+wear: {"27": 2}
+week: {"27": 2}
+weet: {"43": 2}
+wesh: {"34": 6}
+white: {"27": 2}
+wide: {"27": 2}
+wield: {"40": 1}
+wij: {"43": 1}
+wil: {"43": 6}
+winter: {"35": 1}
+wisin: {"44": 2}
+wiz: {"26": 3}
+woah: {"25": 2}
+woo: {"38": 4}
+woof: {"27": 2}
+worldwid: {"24": 1}
+worri: {"27": 2, "45": 1}
+worst: {"40": 1}
+wou: {"43": 1}
+wrap: {"35": 1}
+write: {"40": 1}
+xd: {"21": 1}
+ya: {"27": 4, "44": 1}
+yaksokha: {"32": 3}
+yandel: {"44": 6}
+yeah: {"24": 3, "25": 4, "26": 3, "27": 4, "29": 2, "31": 3, "33": 2, "35": 1, "36": 1, "38": 4, "39": 2, "40": 1}
+yema: {"34": 4}
+yeongwonhi: {"32": 2}
+yo: {"24": 6, "27": 9, "44": 4, "46": 1}
+york: {"36": 1}
+zamorano: {"34": 1}
+zeg: {"43": 3}
+zie: {"43": 3}
+zip: {"33": 2}
+zone: {"40": 1}
+à: {"34": 6}
+ça: {"34": 3}
+écout: {"34": 1}
+él: {"28": 1}
