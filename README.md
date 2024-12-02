@@ -142,9 +142,9 @@ En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, 
 ### Cómo se construye el índice invertido en PostgreSQL
 
 - La función create_table() crea una tabla en la base de datos llamada songs con varias columnas, entre las que se incluye info_vector de tipo tsvector. La tabla también incluye campos como track_name, track_artist, lyrics y demás atributos del csv para poder insertar.
-- Luego la función insert_all() carga los datos de un archivo CSV (songs.csv) en la tabla songs
-- Después set_index() crea un índice invertido en la columna info_vector, utilizando el índice GIN
-- Finalmente realizamos las consultas
+- Luego la función insert_all() carga los datos de un archivo CSV (songs.csv) en la tabla songs.
+- Después set_index() crea un índice invertido en la columna info_vector, utilizando el índice GIN.
+- Finalmente realizamos las consultas.
 
 ## Backend: Indice Multidimensional
 
