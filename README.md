@@ -61,7 +61,7 @@ Obteniendo los siguientes Scores respectivos:
 
 ![imagen](https://github.com/user-attachments/assets/0511ab50-a9b9-43f8-9987-0781daf8443e)
 
-Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 dan un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto pq da un score adecuado con respecto a la similitud
+Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 da un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto pq da un score adecuado con respecto a la similitud
 
 #### Similitudes de 1
 
@@ -138,6 +138,13 @@ Entonces lo que hacemos es mandarle el nombre del artista:
 ![imagen](https://github.com/user-attachments/assets/f33055ec-1a23-4291-9f40-682cd4003888)
 
 En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, hit a wall Right now I need a" sea obtenido como primer resultado no paso ello, sin embargo estuvo en segundo y además si le colocamos el título logramos incrementar su score
+
+### Cómo se construye el índice invertido en PostgreSQL
+
+- La función create_table() crea una tabla en la base de datos llamada songs con varias columnas, entre las que se incluye info_vector de tipo tsvector. La tabla también incluye campos como track_name, track_artist, lyrics y demás atributos del csv para poder insertar.
+- Luego la función insert_all() carga los datos de un archivo CSV (songs.csv) en la tabla songs
+- Después set_index() crea un índice invertido en la columna info_vector, utilizando el índice GIN
+- Finalmente realizamos las consultas
 
 ## Backend: Indice Multidimensional
 
