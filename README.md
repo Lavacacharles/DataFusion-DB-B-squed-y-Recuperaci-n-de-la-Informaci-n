@@ -1,10 +1,14 @@
 # DataFusion-DB-B-squeda-y-Recuperaci-n-de-la-Informaci-n
 - ! Importante:
-  Avance del indice invertido parte algortimica: index_spimi1, en el file: SpimiIntento3_funciona pero el merge esta raro_..., ya se pueen procesar consultas
- Y en mergeBlocks.py, el mergeo es correcto
+  Indice invertido parte algortimica: En la rama index_spimi1 con nombre Spimi_Optimizacion.ipynb
+  
 - En la rama compiler se encuentra el front y el back listo para fusionar
+## Introducción
+## Backend: Índice Invertido
 
-## Extracción de características
+
+## Backend: Indice Multidimensional
+### Extracción de características
 - A diferencia de utilizar la version matricial luego aplanada de las imágenes para indexar y probar los índices de recuperación, optamos por el enfoque de utilizar descriptores locales, utilizamos el modelo pre entrenado Resnet 152 que tiene la siguiente arquitecutura:
 
 ![image](https://github.com/user-attachments/assets/c476d28e-770d-42a8-b4c3-0a8175d19f06)
@@ -12,7 +16,7 @@
 - Resumiendo el proceso, en las capas de convolución analizar la imágenes por cuadrillas de 7 x 7, luego de 3 x 3 en las sigueintes 4 capas, además de esto se aplican técnicas de MaxPooling y AvgPooling, que reducen el ruido tomando el valor máximo en cada grilla de 3 x 3 y la complejidad mediante la redución del tamaño de la imágen procesada. Al final de todo se aplica un ajuste del vector representativo aplanado con 1000 parámetros para obtener las características relevantes de las imágenes, en nuestro caso la variación de ResNET 152 genera un vector representativo de 2048 características.
 
   
-## Descriptores locales
+### Descriptores locales
 - Los descriptores se definen como factores que tienen detalles en los objetos multimedia pero de pequeñas proporciones de la imágen, estos que permiten describir las imágenes y en comparaciones múltiples es mucho más robusto por prevalacer en la similitud de características granulares de las imágenes, la idea detrás de su efectividad es que se obtienen mediante procesos minuciosos de exploración de imágenes, como son las redes neuronales CNN.
 
 - En la práctica se aplican técnicas eficientes con modelos pre entrenados como:
@@ -29,7 +33,7 @@ Similar a SIFT, pero más rápida. Usa aproximaciones rápidas de convoluciones 
 
 Utilizaremos `SuperPoint` para la representación de imágenes, indexado y en la recuperación identificaremos las imágenes e utilizaremos Resnet para la evaluación de la más parecida de imágenes de consulta:
   
-## Maldición de la dimensionalidad
+### Maldición de la dimensionalidad
 La maldicion de la alta dimensionalidad es un fenomeno que ocurre conforme se incrementan las dimensiones de los vectores caracteristicos. Hace referencia a que a mas dimensiones, mas esparsos parecen los datos, las distancias convergen a ser las máximas e indistinguibles en un espacio infinito(Norma infinito), de modo que los datos antes presuntamente cercanos empiezan a perder la cercanía entre estos y la distancia se homologa para todos los datos.
 
 Para lidiar con problemas se opta por ténicas de reducción de la dimensionalidad considerando 2 factores principales, conservar las relaciones o las estructuras y distancias, dependiendo del problema, en machine learning suele priorizarse mantener las relaciones, un ejemplo es PCA y sus variaciones como SVD, que capturan la varianza de los datos y redimensionan los datos manteniendo la máxima separabilidad posible para mejorar los modelos. Por otro lado ténicas como Random Projections que mantienen las distancias y son más eficientes computacionalmente porque aplican algoritmos de orden lineal, y es la técnica utilizada en el presente informa para poder experimentar con diferentes niveles de dimensionalidad.
