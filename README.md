@@ -137,7 +137,7 @@ Entonces lo que hacemos es mandarle el nombre del artista:
 
 ![imagen](https://github.com/user-attachments/assets/f33055ec-1a23-4291-9f40-682cd4003888)
 
-En este caso pudimos observar que si bien es cierto esperábamos "Crashing, hit a wall Right now I need a" se obtenido como primer resultado no paso ello, sin embargo estuvo en segundo y además si le colocamos el título logramos incrementar su score
+En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, hit a wall Right now I need a" sea obtenido como primer resultado no paso ello, sin embargo estuvo en segundo y además si le colocamos el título logramos incrementar su score
 
 ## Backend: Indice Multidimensional
 
