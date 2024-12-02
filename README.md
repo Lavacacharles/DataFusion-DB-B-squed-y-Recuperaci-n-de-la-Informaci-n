@@ -10,16 +10,27 @@
 
 ![ClassSpimi](https://github.com/user-attachments/assets/ff4579d2-7b01-4f04-b82e-167377929225)
 
-Clase SPIMI con los atributos más relevantes
+Clase SPIMI con los atributos más relevantes. 
+- Inicializa la clase SPIMI con parámetros como la ruta al conjunto de datos, directorios de bloques, columnas a indexar y límite de tamaño de disco.
+- Configura rutas y archivos para almacenar los índices, y carga el conteo de documentos desde un archivo si ya existe.
 
 ![defInvert](https://github.com/user-attachments/assets/1d4ef29d-b857-42f0-a98e-9b87515b1f28)
 
 Proceso para construir el índice invertido en memoria secundaria SPIMI
+- Realiza la indexación de los documentos, creando bloques de términos invertidos.
+- Lee el conjunto de datos en bloques (chunks), procesa el texto y realiza el preprocesamiento (tokenización y limpieza), y construye un diccionario de términos por documento. Si un bloque supera el límite de memoria, lo escribe en disco.
+
+![MergeHeap](https://github.com/user-attachments/assets/bbdbdb66-e244-4bfc-b2d6-8983bd7b6e02)
+
+Implementaciión de merge usando un Min-Heap
+- Fusiona los bloques de términos invertidos en un índice único utilizando un Min-Heap.
+- Abre los bloques, extrae los términos y sus postings, y fusiona los postings en un único archivo ordenado de acuerdo con el término. Calcula el TF-IDF para cada documento y guarda los resultados.
 
 ![retrieval](https://github.com/user-attachments/assets/c06fcc5a-d69d-42a7-9b74-770c0b899117)
 
 Proceso para realizar la consulta en memoria secundaria
-
+- Realiza una consulta sobre el índice invertido y devuelve los documentos más relevantes.
+- Preprocesa la consulta, calcula el TF-IDF de los términos en la consulta y los documentos, y calcula la similitud entre la consulta y los documentos usando el coseno del producto. Devuelve los documentos con las puntuaciones más altas.
 ## Backend: Indice Multidimensional
 
 ## Extracción de características
