@@ -41,7 +41,7 @@ La función recibe tres parámetros: la ruta del archivo CSV (path), el índice 
 
 Para obtener los resultados de manera eficiente en término de memoria secundaria se emplea la siguiente función: 
 
-![imagen](https://github.com/user-attachments/assets/18a00ccc-7b41-4f7e-8932-37a7fa1e8156)
+![imagen](https://github.com/user-attachments/assets/ab822b25-ecfc-40dc-be07-ae8b9f408474)
 
 La función lee el archivo CSV en bloques utilizando la función pd.read_csv() con el parámetro chunksize establecido en disk_limit. Esto permite que los datos se carguen de manera incremental, evitando la carga completa del archivo en memoria, lo que es fundamental cuando se trabaja con archivos grandes.
 Para cada bloque de datos (chunk), la función recorre la lista result y calcula el índice global del documento en el bloque actual, basado en el número de bloque.
@@ -65,9 +65,9 @@ Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 dan u
 
 #### Similitudes de 1
 
-![imagen](https://github.com/user-attachments/assets/e0b91c8e-e025-4a5c-8577-db8fb66647bc)
+- Query: ![imagen](https://github.com/user-attachments/assets/e0b91c8e-e025-4a5c-8577-db8fb66647bc)
 
-Resultados: 
+- Resultados: 
 ![imagen](https://github.com/user-attachments/assets/a76c7a09-4dfa-431e-a082-c1dc044a21b0)
 Scores: 
 ![imagen](https://github.com/user-attachments/assets/f9104a25-7b31-4282-abe8-b23d6b4137b0)
