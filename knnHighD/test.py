@@ -1,38 +1,48 @@
 #!/usr/bin/env python3
 
-from knn_high import load_index, search, create_index
+from knn_high import load_index, search, create_index, create_index_array, search_time
 import pickle
-import numpy as np
-import time
+import os
 
 
-index, image_names = load_index("index.faiss", "image_names.pkl")
+def exists():
+    index, image_names = load_index("index.faiss", "image_names.pkl")
 
-dataset_path = "the_last_one.pkl"
-# Open a file and use dump()
-with open(dataset_path, "rb") as file:
-    # A new file will be created
-    dataset_nested = pickle.load(file)
+    dataset_path = "the_last_one.pkl"
+    # Open a file and use dump()
+    with open(dataset_path, "rb") as file:
+        # A new file will be created
+        dataset_nested = pickle.load(file)
 
-feature_vectors = []
+    feature_vectors = []
 
-for i in dataset_nested:
-    if len(i["embedding"]) == 0:
-        continue
+    for i in dataset_nested:
+        if len(i["embedding"]) == 0:
+            continue
     feature_vectors.append(i["embedding"][0])
 
-# This creates the index
-# index, image_names = create_index(dataset_path)
 
-feature_vectors = np.array(feature_vectors)
-feature_vectors = feature_vectors.astype("float32")
+def create(dataset_path):
+    # This creates the index
+    index, feature_vectors = create_index_array(dataset_path)
 
-query_vectors = feature_vectors[:1]
-k = 8
+    query_vectors = feature_vectors[:1]
+    k = 8
 
-start = time.time()
-paths = search(index, image_names, query_vectors, k)
-end = time.time()
+    elapsed_time = search_time(index, query_vectors, k)
 
-print("Paths: ", paths)
-print("Elapsed_time: ", end - start)
+    print("Elapsed_time: ", elapsed_time)
+    return elapsed_time
+
+
+folder_path = "reduction/"
+archivos_pkl = [f for f in os.listdir(folder_path) if f.endswith(".pkl")]
+
+print(archivos_pkl)
+
+for i in archivos_pkl:
+    print("File: ", folder_path + i)
+    if os.path.getsize(folder_path + i) > 0:
+        create(folder_path + i)
+    else:
+        print("Empty file")
