@@ -80,12 +80,64 @@ Scores:
 #### Consultas por texto
 
 - Query:
-  ![imagen](https://github.com/user-attachments/assets/5807afe0-2ec6-493b-944d-b19707a599f3)
-- Resultados:
-  ![imagen](https://github.com/user-attachments/assets/2f48b119-e539-44e6-9765-53b868a4354a)
-- Score:
-  ![imagen](https://github.com/user-attachments/assets/3f2f8391-a801-4aae-ade8-559f131b49da)
+  
+![imagen](https://github.com/user-attachments/assets/5807afe0-2ec6-493b-944d-b19707a599f3)
 
+- Resultados:
+  
+![imagen](https://github.com/user-attachments/assets/2f48b119-e539-44e6-9765-53b868a4354a)
+
+- Score:
+  
+![imagen](https://github.com/user-attachments/assets/3f2f8391-a801-4aae-ade8-559f131b49da)
+
+- Query:
+
+![imagen](https://github.com/user-attachments/assets/f9266113-68d4-44ba-9afd-00905f9f9e41)
+
+- Resultados:
+
+![imagen](https://github.com/user-attachments/assets/7a1d593d-0381-4406-9750-49d3babfde92)
+
+- Score:
+
+![imagen](https://github.com/user-attachments/assets/d03eedba-a5f1-4cb9-bbe7-4e246324ef41)
+
+#### ¿Pero qué sucede si nos trae otro?
+Por ejemplo en la siguiente query se espera que la letra "Crashing, hit a wall Right now I need a" este cómo primer resultado, sin embargo aparece "You don't really know what you got yourself"
+
+- Query:
+
+![imagen](https://github.com/user-attachments/assets/ecc01d91-fc6a-4c16-81ab-e4c93d27c721)
+
+
+- Resultados:
+
+![imagen](https://github.com/user-attachments/assets/aef15b11-8ac8-40d9-a4fa-6dac4392d37a)
+
+
+- Score:
+
+![imagen](https://github.com/user-attachments/assets/a4c0c93b-ad35-4cd3-975f-c5f6f7fb0a50)
+
+Entonces lo que hacemos es mandarle el nombre del artista: 
+
+- Query:
+
+
+![imagen](https://github.com/user-attachments/assets/f7a7837b-fb24-4e2b-9a31-f1b3b6e33488)
+
+
+- Resultados:
+
+![imagen](https://github.com/user-attachments/assets/4fd85cda-261b-49ca-9ad2-3c4e99bc8b0e)
+
+- Score:
+
+
+![imagen](https://github.com/user-attachments/assets/f33055ec-1a23-4291-9f40-682cd4003888)
+
+En este caso pudimos observar que si bien es cierto esperábamos "Crashing, hit a wall Right now I need a" se obtenido como primer resultado no paso ello, sin embargo estuvo en segundo y además si le colocamos el título logramos incrementar su score
 
 ## Backend: Indice Multidimensional
 
