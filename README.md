@@ -6,6 +6,10 @@
 ## Introducción
 ## Backend: Índice Invertido
 
+### Construcción del índice invertido en memoria secundaria
+![ClassSpimi](https://github.com/user-attachments/assets/b89b991b-6c8f-4e4a-8a4e-bf0b46b9dbfd)
+
+
 
 ## Backend: Indice Multidimensional
 
