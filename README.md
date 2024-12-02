@@ -7,9 +7,15 @@
 ## Backend: Índice Invertido
 
 ### Construcción del índice invertido en memoria secundaria
-![ClassSpimi](https://github.com/user-attachments/assets/b89b991b-6c8f-4e4a-8a4e-bf0b46b9dbfd)
 
+![ClassSpimi](https://github.com/user-attachments/assets/ff4579d2-7b01-4f04-b82e-167377929225)
+Clase SPIMI con los atributos más relevantes
 
+![defInvert](https://github.com/user-attachments/assets/1d4ef29d-b857-42f0-a98e-9b87515b1f28)
+Proceso para construir el índice invertido en memoria secundaria SPIMI
+
+![retrieval](https://github.com/user-attachments/assets/c06fcc5a-d69d-42a7-9b74-770c0b899117)
+Proceso para realizar la consulta en memoria secundaria
 
 ## Backend: Indice Multidimensional
 
