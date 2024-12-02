@@ -144,6 +144,12 @@ En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, 
 - La función create_table() crea una tabla en la base de datos llamada songs con varias columnas, entre las que se incluye info_vector de tipo tsvector. La tabla también incluye campos como track_name, track_artist, lyrics y demás atributos del csv para poder insertar.
 - Luego la función insert_all() carga los datos de un archivo CSV (songs.csv) en la tabla songs.
 - Después set_index() crea un índice invertido en la columna info_vector, utilizando el índice GIN.
+- La función update_index() nos permite seleccionar el lenguaje y priorizar las columnas:
+  
+  ![imagen](https://github.com/user-attachments/assets/74a916e0-4b28-4ca3-bc0e-4624ced4d420)
+
+  Se utilizan los pesos asignados por la función setweight() para dar diferentes niveles de relevancia a cada columna. El peso más alto, 'A', se asigna al nombre de la canción (track_name), el siguiente peso, 'B', al nombre del álbum (track_album_name), y los pesos 'C' y 'D' se asignan al nombre del artista (track_artist) y las letras (lyrics), respectivamente.
+
 - Finalmente realizamos las consultas.
 
 ## Backend: Indice Multidimensional
