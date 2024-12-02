@@ -31,6 +31,28 @@ Implementaciión de merge usando un Min-Heap
 Proceso para realizar la consulta en memoria secundaria
 - Realiza una consulta sobre el índice invertido y devuelve los documentos más relevantes.
 - Preprocesa la consulta, calcula el TF-IDF de los términos en la consulta y los documentos, y calcula la similitud entre la consulta y los documentos usando el coseno del producto. Devuelve los documentos con las puntuaciones más altas.
+
+### Ejecución óptima de consultas aplicando Similitud de Coseno
+Para probar que nuestro índice invertido funciones bien nos apoyamos de get_dfTex_Cols. 
+
+![Captura de pantalla 2024-12-01 225601](https://github.com/user-attachments/assets/f8b1e097-20cf-4784-a0bc-b9f65cb38fcc)
+
+La función recibe tres parámetros: la ruta del archivo CSV (path), el índice de la fila desde la que se extraerán los datos (row), y una lista de índices de las columnas deseadas (columnas). Utiliza pandas para cargar el archivo CSV y extraer los valores de las columnas seleccionadas en la fila indicada. Los valores extraídos se unen en una sola cadena de texto, separados por espacios. Esta función facilita la validación rápida de que la similitud de coseno de 1.
+
+#### Pruebas
+Una prueba interesante es con la canción de la fila 2 del csv, puesto que, esta se repite en varias filas solo que varían algunos parámetros como el id de la canción. 
+
+En la siguiente figura se visualiza cómo la canción de la fila 2 es la más cercana
+
+![imagen](https://github.com/user-attachments/assets/cb0c5cf2-c2ef-42d0-88ea-9b6f4e93c57f)
+
+Obteniendo los siguientes Scores respectivos: 
+
+![imagen](https://github.com/user-attachments/assets/0511ab50-a9b9-43f8-9987-0781daf8443e)
+
+Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 dan un score de 1 y para las 3 siguientes da un scire de casi 1, puesto que, los lyrics son los mismos. 
+
+
 ## Backend: Indice Multidimensional
 
 ## Extracción de características
