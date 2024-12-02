@@ -5,14 +5,15 @@
 - En la rama compiler se encuentra el front y el back listo para fusionar
 
 ## Extracción de características
-- A diferencia de utilizar la version matricial luego aplanada de las imágenes para indexar y probar los índices de recuperación, optamos por el enfoque de utilizar descriptores locales.
+- A diferencia de utilizar la version matricial luego aplanada de las imágenes para indexar y probar los índices de recuperación, optamos por el enfoque de utilizar descriptores locales, utilizamos el modelo pre entrenado Resnet 152 que tiene la siguiente arquitecutura:
 
 ![image](https://github.com/user-attachments/assets/c476d28e-770d-42a8-b4c3-0a8175d19f06)
 
 - Resumiendo el proceso, en las capas de convolución analizar la imágenes por cuadrillas de 7 x 7, luego de 3 x 3 en las sigueintes 4 capas, además de esto se aplican técnicas de MaxPooling y AvgPooling, que reducen el ruido tomando el valor máximo en cada grilla de 3 x 3 y la complejidad mediante la redución del tamaño de la imágen procesada. Al final de todo se aplica un ajuste del vector representativo aplanado con 1000 parámetros para obtener las características relevantes de las imágenes, en nuestro caso la variación de ResNET 152 genera un vector representativo de 2048 características.
+
   
 ## Descriptores locales
-- Los descriptores se definen como factores que tienen detalles en los objetos multimedia pero de pequeñas proporciones de la imágen, estos que permiten describir las imágenes y en comparaciones múltiples es mucho más robusto por prevalacer en la similitud de características granulares de las imágenes, la idea detrás de su efectividad es que se obtienen mediante procesos minuciosos de exploración de imágenes, como son las redes neuronales CNN, utilizamos el modelo pre entrenado Resnet 152 que tiene la siguiente arquitecutura:
+- Los descriptores se definen como factores que tienen detalles en los objetos multimedia pero de pequeñas proporciones de la imágen, estos que permiten describir las imágenes y en comparaciones múltiples es mucho más robusto por prevalacer en la similitud de características granulares de las imágenes, la idea detrás de su efectividad es que se obtienen mediante procesos minuciosos de exploración de imágenes, como son las redes neuronales CNN.
 
 - En la práctica se aplican técnicas eficientes con modelos pre entrenados como:
   
