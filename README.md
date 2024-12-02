@@ -22,7 +22,7 @@ Proceso para construir el índice invertido en memoria secundaria SPIMI
 
 ![MergeHeap](https://github.com/user-attachments/assets/bbdbdb66-e244-4bfc-b2d6-8983bd7b6e02)
 
-Implementaciión de merge usando un Min-Heap
+Implementación de merge usando un Min-Heap
 - Fusiona los bloques de términos invertidos en un índice único utilizando un Min-Heap.
 - Abre los bloques, extrae los términos y sus postings, y fusiona los postings en un único archivo ordenado de acuerdo con el término. Calcula el TF-IDF para cada documento y guarda los resultados.
 
