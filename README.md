@@ -41,6 +41,16 @@ Para lidiar con problemas se opta por ténicas de reducción de la dimensionalid
 - (esta explicación es una experiencia pasada, agregar aquí los resultados de la experimentación)
 - Hemos observado el problema de la alta dimensionalidad en nuestro Rtree: (al tener datos demasiado esparsos, las 'bounding boxes' resultan cada ves menos informativas, se solapan, etc). Esto hace que la performance del indice tienda mas y mas a lineal, como vemos en nuestra experimentacion. Una solucion obvia para el problema de la dimensionalidad es reducir las dimensiones, pero al hacer esto (vimos en la practica) que la exactitud de nuestra busqueda era considerablemente menor. Esto tiene sentido, porque a menos datos para tomar una descicion, mas probable es equivocarse.
 
+## Frontend
+### Diseño de la GUI
+- Mini-manual de usuario
+- Screenshots de la GUI
+### Análisis comparativo visual con otras implementaciones
+
+
+## Experimentación
+
+
 Referencias:
 - Pustokhin, D. A., Singh, P. K., Choudhary, P., & Gunasekaran, M. (2021). An effective deep residual network based class attention layer with bidirectional LSTM for diagnosis and classification of COVID-19. Journal of Applied Statistics. Recuperado de https://www.researchgate.net/publication/347170147
 
