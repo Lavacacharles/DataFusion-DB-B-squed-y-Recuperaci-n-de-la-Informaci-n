@@ -37,9 +37,20 @@ Para probar que nuestro índice invertido funciones bien nos apoyamos de get_dfT
 
 ![Captura de pantalla 2024-12-01 225601](https://github.com/user-attachments/assets/f8b1e097-20cf-4784-a0bc-b9f65cb38fcc)
 
-La función recibe tres parámetros: la ruta del archivo CSV (path), el índice de la fila desde la que se extraerán los datos (row), y una lista de índices de las columnas deseadas (columnas). Utiliza pandas para cargar el archivo CSV y extraer los valores de las columnas seleccionadas en la fila indicada. Los valores extraídos se unen en una sola cadena de texto, separados por espacios. Esta función facilita la validación rápida de que la similitud de coseno de 1.
+La función recibe tres parámetros: la ruta del archivo CSV (path), el índice de la fila desde la que se extraerán los datos (row), y una lista de índices de las columnas deseadas (columnas). Utiliza pandas para cargar el archivo CSV y extraer los valores de las columnas seleccionadas en la fila indicada. Los valores extraídos se unen en una sola cadena de texto, separados por espacios. Esta función facilita la validación rápida de que la similitud de coseno de 1. Es relevante mencionar que dicha función solo sirve para el testeo. 
+
+Para obtener los resultados de manera eficiente en término de memoria secundaria se emplea la siguiente función: 
+
+![imagen](https://github.com/user-attachments/assets/18a00ccc-7b41-4f7e-8932-37a7fa1e8156)
+
+La función lee el archivo CSV en bloques utilizando la función pd.read_csv() con el parámetro chunksize establecido en disk_limit. Esto permite que los datos se carguen de manera incremental, evitando la carga completa del archivo en memoria, lo que es fundamental cuando se trabaja con archivos grandes.
+Para cada bloque de datos (chunk), la función recorre la lista result y calcula el índice global del documento en el bloque actual, basado en el número de bloque.
+Si el índice del documento está dentro del rango del bloque actual, la función extrae la fila correspondiente y le agrega una columna adicional llamada score que contiene el puntaje asociado al documento.
+Cada fila procesada se agrega a una lista res y se retorna las filas del csv.
 
 #### Pruebas
+
+#### Filas similares
 Una prueba interesante es con la canción de la fila 2 del csv, puesto que, esta se repite en varias filas solo que varían algunos parámetros como el id de la canción. 
 
 En la siguiente figura se visualiza cómo la canción de la fila 2 es la más cercana
@@ -50,7 +61,25 @@ Obteniendo los siguientes Scores respectivos:
 
 ![imagen](https://github.com/user-attachments/assets/0511ab50-a9b9-43f8-9987-0781daf8443e)
 
-Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 dan un score de 1 y para las 3 siguientes da un scire de casi 1, puesto que, los lyrics son los mismos. 
+Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 dan un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto pq da un score adecuado con respecto a la similitud
+
+#### Similitudes de 1
+
+![imagen](https://github.com/user-attachments/assets/e0b91c8e-e025-4a5c-8577-db8fb66647bc)
+
+Resultados: 
+![imagen](https://github.com/user-attachments/assets/a76c7a09-4dfa-431e-a082-c1dc044a21b0)
+Scores: 
+![imagen](https://github.com/user-attachments/assets/f9104a25-7b31-4282-abe8-b23d6b4137b0)
+
+#### Consultas por texto
+
+- Query:
+  ![imagen](https://github.com/user-attachments/assets/5807afe0-2ec6-493b-944d-b19707a599f3)
+- Resultados:
+  ![imagen](https://github.com/user-attachments/assets/2f48b119-e539-44e6-9765-53b868a4354a)
+- Score:
+  ![imagen](https://github.com/user-attachments/assets/3f2f8391-a801-4aae-ade8-559f131b49da)
 
 
 ## Backend: Indice Multidimensional
