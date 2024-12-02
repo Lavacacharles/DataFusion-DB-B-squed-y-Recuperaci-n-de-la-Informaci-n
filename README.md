@@ -65,10 +65,12 @@ Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 dan u
 
 #### Similitudes de 1
 
-- Query: ![imagen](https://github.com/user-attachments/assets/e0b91c8e-e025-4a5c-8577-db8fb66647bc)
+- Query:
+ ![imagen](https://github.com/user-attachments/assets/e0b91c8e-e025-4a5c-8577-db8fb66647bc)
 
 - Resultados: 
 ![imagen](https://github.com/user-attachments/assets/a76c7a09-4dfa-431e-a082-c1dc044a21b0)
+
 Scores: 
 ![imagen](https://github.com/user-attachments/assets/f9104a25-7b31-4282-abe8-b23d6b4137b0)
 
