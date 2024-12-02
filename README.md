@@ -49,8 +49,6 @@ model = SuperPointForKeypointDetection.from_pretrained("magic-leap-community/sup
 - Loa resultados fueron:
 ![image](https://github.com/user-attachments/assets/53ad8bf1-4751-4fb8-aba9-e4aa093ea431)
 
-![image](https://github.com/user-attachments/assets/b7cfaec3-50c9-467e-a0dd-8e05a64580f6)
-
 ## Maldición de la dimensionalidad
 La maldicion de la alta dimensionalidad es un fenomeno que ocurre conforme se incrementan las dimensiones de los vectores caracteristicos. Hace referencia a que a mas dimensiones, mas esparsos parecen los datos, las distancias convergen a ser las máximas e indistinguibles en un espacio infinito(Norma infinito), de modo que los datos antes presuntamente cercanos empiezan a perder la cercanía entre estos y la distancia se homologa para todos los datos.
 
