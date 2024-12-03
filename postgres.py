@@ -10,8 +10,8 @@ from preprocesamiento import preprocesamiento
 conn = psycopg2.connect(
     database="bd2_proyecto",
     host="localhost",
-    user="username",
-    password="password",
+    user="postgres",
+    password="postgres",
     port="5432",
 )
 
@@ -204,26 +204,40 @@ columns = [
     "playlist_subgenre",
     "language",
 ]
+
+
+
+
+
 # The csv file needs to have only the above columns
 # To generate this csv, use the clean.py file
 # Currently the songs_20.csv and songs.csv datasets are cleaned.
 # Found in the datasets directory
-csv_path = "datasets/songs_20.csv"
+csv_path = "datasets/spotify_1000.csv"
 insert_all(csv_path, columns)
 update_index("english")
 
-# columns = ["track_id", "track_name", "track_artist", "track_album_name"]
-columns = ["track_name"]
+
+def obtain_times(queries, columns, k):
+    times = []
+    for i in queries:
+        current_time = search(i, columns, k, True)
+        print(current_time)
+        times.append(current_time)
+    return times
+
+
+columns = ["track_id", "track_name", "track_artist", "track_album_name"]
+# Las queries deben estar asi porque con """ hay más espacio, arruinando el
+# preprocesamiento
 queries = [
-    "Don't act like you know me",
-    "I am in the house of the burning sun",
-    "you are like me",
-    "this is my breath",
-    "loyalty",
+    "Don't sweat all the little things Just keep your eye on the bigger things Cause if you look a little closer You're gonna get a bigger picture",
+    "I'mma make your CXRPSE dance Ugh, hop in that Jag, do the dash I shoot a nigga then laugh Bitch, don't talk to me if you ain't on that",
 ]
-k = 5
-index = 3
-results = search(queries[index], columns, 5, False)
-print("Query: ", queries[index])
-for i in results:
-    print(i)
+
+
+k = 20
+times = obtain_times(queries, columns, k)
+for i in range(len(times)):
+    print("Querry i: ", queries[i])
+    print("Elapsed time: ", times[i], "ms")

@@ -1,0 +1,5 @@
+dataset,creation_time_s,average_query_time_s
+spotify_1000.csv,0.048355,0.0386835
+spotify_2000.csv,0.07490899999999999,0.0572875
+spotify_4000.csv,0.147781,0.11744899999999998
+spotify_8000.csv,0.312503,0.225094
