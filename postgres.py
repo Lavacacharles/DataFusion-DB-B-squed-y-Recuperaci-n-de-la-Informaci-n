@@ -214,8 +214,19 @@ columns = [
 # Currently the songs_20.csv and songs.csv datasets are cleaned.
 # Found in the datasets directory
 csv_path = "datasets/spotify_1000.csv"
+csv_path = "datasets/songs.csv"
 insert_all(csv_path, columns)
 update_index("english")
+
+
+def obtain_times(queries, columns, k):
+    times = []
+    for i in queries:
+        current_time = search(i, columns, k, True)
+        print(current_time)
+        times.append(current_time)
+    return times
+
 
 
 def obtain_times(queries, columns, k):
@@ -230,7 +241,13 @@ def obtain_times(queries, columns, k):
 columns = ["track_id", "track_name", "track_artist", "track_album_name"]
 # Las queries deben estar asi porque con """ hay más espacio, arruinando el
 # preprocesamiento
+# columns = ["track_id", "track_name", "track_artist", "track_album_name"]
+columns = ["track_name"]
+# Las queries deben estar asi porque con """ hay más espacio, arruinando el
+# preprocesamiento
 queries = [
+    "Don't sweat all the little things Just keep your eye on the bigger things Cause if you look a little closer You're gonna get a bigger picture",
+    "I'mma make your CXRPSE dance Ugh, hop in that Jag, do the dash I shoot a nigga then laugh Bitch, don't talk to me if you ain't on that",
     "Don't sweat all the little things Just keep your eye on the bigger things Cause if you look a little closer You're gonna get a bigger picture",
     "I'mma make your CXRPSE dance Ugh, hop in that Jag, do the dash I shoot a nigga then laugh Bitch, don't talk to me if you ain't on that",
 ]
