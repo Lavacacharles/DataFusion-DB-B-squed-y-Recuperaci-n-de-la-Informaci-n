@@ -1,10 +1,26 @@
 # DataFusion-DB-B-squeda-y-Recuperaci-n-de-la-Informaci-n
 
 - ! Importante:
-  Indice invertido parte algortimica: En la rama index_spimi1 con nombre Spimi_Optimizacion.ipynb
+  Indice invertido parte algortimica (backend): En la rama index_spimi1 con nombre Spimi_Optimizacion.ipynb
 - En la rama compiler se encuentra el front y el back listo para fusionar
 
 ## Introducción
+
+### Objetivo del proyecto
+
+El objetivo del proyecto es recuperar información, ya sea de tipo textual mediante un índice invertido o multimedia utilizando un índice multidimensional. Asimismo, se busca comparar las técnicas implementadas con otras soluciones existentes. Por ejemplo, se desarrolló SPIMI para compararla con el índice GIN de PostgreSQL. Además, se realizará una comparación de índices multidimensionales aplicando búsquedas KNN de manera secuencial en estructuras como R-Tree y en espacios de alta dimensionalidad.
+
+### Dominio de datos Índice invertido
+Para el índice invertido empleamos el dataset dado por Kagle: [spotify_songs](https://www.kaggle.com/datasets/imuhammad/audio-features-and-lyrics-of-spotify-songs). Este dataset contiene información diversa sobre más de 18,000 canciones de Spotify, incluyendo datos sobre el artista, álbum, características acústicas (como la sonoridad), letras, idioma de las letras, géneros y subgéneros. 
+
+Para la indexación nos centramos en las siguientes columnas: 
+
+- track_name: Nombre de la canción. 
+- track_artist: Artista de la canción. 
+- lyrics: Letra de la canción. 
+- track_album_name: Nombre del álbum al que pertenece la canción.
+
+
 
 ## Backend: Índice Invertido
 
@@ -69,7 +85,7 @@ Obteniendo los siguientes Scores respectivos:
 
 ![imagen](https://github.com/user-attachments/assets/0511ab50-a9b9-43f8-9987-0781daf8443e)
 
-Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 da un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto pq da un score adecuado con respecto a la similitud
+Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 da un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto porque da un score adecuado con respecto a la similitud
 
 #### Similitudes de 1
 
@@ -232,6 +248,9 @@ El índice invertido de Faiss divide el dataset en contenedores. Esto facilita e
 
 ### Resultados
 
+
+#### Índice Multidimensional
+
 | Tamaño del vector característico | KNN-Secuencial | KNN-RTree | KNN-HighD |
 | -------------------------------- | -------------- | --------- | --------- |
 | 1000                             | 0.4514         | 0.000     | 0.0012    |
@@ -253,6 +272,85 @@ El de 32 000 características se hizo con solo 20 000 datos del dataset.
 ### Análisis comparativo visual con otras implementaciones
 
 ## Experimentación
+
+### Tablas y gráficos de los resultados experimentales
+#### Índice Invertido
+En las siguientes tablas N representa la cantidad canciones que se usarón para la experimentación, y los valores para Postgres GIN y SPIMI se encuentran en segundos
+
+
+##### Tiempo de creación en segundos de la creación de los índices GIN y SPIMI
+Para la creación de indexarón las siguientes columnas: "track_name","track_artist","lyrics", "track_album_name"
+
+| N    | Postgres GIN | SPIMI  |
+|------|----------|--------|
+| 1000 | 0.05     | 14.87  |
+| 2000 | 0.07     | 31.26  |
+| 4000 | 0.15     | 60.50  |
+| 8000 | 0.31     | 123.58 |
+| 16000| 0.57     | 114.08 |
+| 32000| 1.51     | 251.57 |
+| 64000| 2.98     | 466.92 |
+
+
+
+Gráfica de comparación en segundos en la creación de los índices, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
+
+![Captura de pantalla 2024-12-03 000139](https://github.com/user-attachments/assets/731e9d4c-c620-4966-b0b8-0639c4080d73)
+
+Por el lado de la creación la notamos que el índice Gin es mucho más rápido que nuestro ínidce Spimi
+
+##### Tiempo de las consultas en segundos para los índices GIN y SPIMI:
+
+Se emplearón las siguientes querys para la experimentación dónde el tiempo de la consulta viene a ser el promedio de las 2 querys:
+- "Don't sweat all the little things 
+    Just keep your eye on the bigger things
+    Cause if you look a little closer 
+    You're gonna get a bigger picture"
+- "I'mma make your CXRPSE dance
+    Ugh, hop in that Jag, do the dash
+    I shoot a nigga then laugh
+    Bitch, don't talk to me if you ain't on that"
+  
+Para obtener los k resultados relevantes se uso el valor de 20
+
+| N     | Postgres GIN | SPIMI  |
+|-------|----------|--------|
+| 1000  | 0.04     | 0.15   |
+| 2000  | 0.06     | 0.75   |
+| 4000  | 0.12     | 0.37   |
+| 8000  | 0.23     | 0.77   |
+| 16000 | 0.41     | 0.86   |
+| 32000 | 0.64     | 1.66   |
+| 64000 | 1.28     | 2.97   |
+
+Gráfica de comparación en segundos en la recuperación por consulta, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
+
+![Captura de pantalla 2024-12-03 000127](https://github.com/user-attachments/assets/fa9090b9-b5fb-4639-8179-20bb29d74b9c)
+
+Debido a que en este caso las diferencias en magnitud no eran muchas se decidió también efectuar la gráfica en segundos sin reescalamiento para algún eje.
+
+![Captura de pantalla 2024-12-03 000150](https://github.com/user-attachments/assets/08febb23-3ce1-4c2d-9be9-abef061b6093)
+
+Por el lado de las consultas nuestro índice SPIMi si entrega los resultados en un tiempo similar al índice GIN.
+
+##### Concurrencia
+
+Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguiente tabla.
+
+| N     | SPIMI  | SPIMI concurrente |
+|-------|--------|-------------------|
+| 1000  | 14.87  | 16.29    |
+| 2000  | 31.26  | 31.95       |
+| 4000  | 60.50  | 61.03      |
+| 8000  | 123.58 | 123.98       |
+| 16000 | 114.08 | 260.31      |
+| 32000 | 251.57 | 560.91    |
+
+Sin embargo, la creación no sufrió alguna mejora significativa, de hecho en 16k la diferencia no es buena, lo cual tiene sentido ya que la cantidad de bloques incrementa por lo que la cantidad de hilos va incrementando, es decir para un correcto uso de hilos se necesitaría "balancear" tanto la cantidad de bloques y los hilos para un correcto funcionamiento.
+
+### Análisis y discusión
+
+- Por el lado del SPIMI la creación es muy costosa en términos de tiempo, a pesar de que se optimizo con un mergeHeap aún no es suficiente la implementación para competir con Gin de postgres. Es en ese punto dónde observamos que la creación de los bloques demora bastante tiempo por ello es necesario trabajar los bloques en un solo documento y guardar un índice que nos permita recuperarlo eficientemente. Asimismo, la carga de las normas debe ser trabajada de mejor manera en memoria secundaria, ya sea usando un Rtree o Hash file que permita la persistencia y actualización eficiente de este. Por otro lado, las consultas con nuestro SPIMI si fueron eficientes, si bien es cierto GIN aún es más veloz pero la brecha de las consultas no es mucha.
 
 Referencias:
 
