@@ -85,7 +85,7 @@ Obteniendo los siguientes Scores respectivos:
 
 ![imagen](https://github.com/user-attachments/assets/0511ab50-a9b9-43f8-9987-0781daf8443e)
 
-Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 da un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto pq da un score adecuado con respecto a la similitud
+Si nos damos cuenta nuestro índice si funciona, puesto que para la fila 2 da un score de 1 y para las 3 siguientes da un score de casi 1, puesto que, los lyrics son los mismos. Esto demuestra que nuestro índice es correcto porque da un score adecuado con respecto a la similitud
 
 #### Similitudes de 1
 
