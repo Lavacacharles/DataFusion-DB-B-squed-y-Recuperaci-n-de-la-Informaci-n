@@ -230,74 +230,6 @@ El índice invertido de Faiss divide el dataset en contenedores. Esto facilita e
 
 ### Resultados
 
-#### Índice Invertido
-En las siguientes tablas N representa la cantidad canciones que se usarón para la experimentación.
-
-
-##### Tiempo de creación en segundos de la creación de los índices GIN y SPIMI
-Para la creación de indexarón las siguientes columnas: "track_name","track_artist","lyrics", "track_album_name"
-
-| N    | Postgres GIN | SPIMI  |
-|------|----------|--------|
-| 1000 | 0.05     | 14.87  |
-| 2000 | 0.07     | 31.26  |
-| 4000 | 0.15     | 60.50  |
-| 8000 | 0.31     | 123.58 |
-| 16000| 0.57     | 114.08 |
-| 32000| 1.51     | 251.57 |
-| 64000| 2.98     | 466.92 |
-
-Gráfica de comparación en segundos en la creación de los índices, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
-
-![Captura de pantalla 2024-12-03 000139](https://github.com/user-attachments/assets/731e9d4c-c620-4966-b0b8-0639c4080d73)
-
-
-
-##### Tiempo de las consultas en segundos para los índices GIN y SPIMI:
-
-Se emplearón las siguientes querys para la experimentación dónde el tiempo de la consulta viene a ser el promedio de las 2 querys:
-- "Don't sweat all the little things 
-    Just keep your eye on the bigger things
-    Cause if you look a little closer 
-    You're gonna get a bigger picture"
-- "I'mma make your CXRPSE dance
-    Ugh, hop in that Jag, do the dash
-    I shoot a nigga then laugh
-    Bitch, don't talk to me if you ain't on that"
-Para obtener los k resultados relevantes se uso el valor de 20
-
-| N     | Postgres | SPIMI  |
-|-------|----------|--------|
-| 1000  | 0.04     | 0.15   |
-| 2000  | 0.06     | 0.75   |
-| 4000  | 0.12     | 0.37   |
-| 8000  | 0.23     | 0.77   |
-| 16000 | 0.41     | 0.86   |
-| 32000 | 0.64     | 1.66   |
-| 64000 | 1.28     | 2.97   |
-
-Gráfica de comparación en segundos en la recuperación por consulta, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
-
-![Captura de pantalla 2024-12-03 000127](https://github.com/user-attachments/assets/fa9090b9-b5fb-4639-8179-20bb29d74b9c)
-
-Debido a que en este caso las diferencias en magnitud no eran muchas se decidió también efectuar la gráfica en segundos sin reescalamiento para algún eje.
-
-![Captura de pantalla 2024-12-03 000150](https://github.com/user-attachments/assets/08febb23-3ce1-4c2d-9be9-abef061b6093)
-
-##### Concurrencia
-
-Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguinete tabla.
-
-| N     | SPIMI  | SPIMI concurrente |
-|-------|--------|-------------------|
-| 1000  | 14.87  | 16.28883958       |
-| 2000  | 31.26  | 31.94599843       |
-| 4000  | 60.50  | 61.02800679       |
-| 8000  | 123.58 | 123.9815321       |
-| 16000 | 114.08 | 260.3115544       |
-| 32000 | 251.57 | 560.9121647       |
-
-Sin embargo, la creación no sufrió alguna mejora significativa, de hecho en 16k la diferencia no es buena, lo cual tiene sentido ya que la cantidad de bloques incrementa por lo que la cantidad de hilos va incrementando, es decir para un correcto uso de hilos se necesitaría "balancear" tanto la cantidad de bloques y los hilos para un correcto funcionamiento.
 
 #### Índice Multidimensional
 
@@ -322,6 +254,82 @@ El de 32 000 características se hizo con solo 20 000 datos del dataset.
 ### Análisis comparativo visual con otras implementaciones
 
 ## Experimentación
+
+### Índice Invertido
+En las siguientes tablas N representa la cantidad canciones que se usarón para la experimentación, y los valores para Postgres GIN y SPIMI se encuentran en segundos
+
+
+#### Tiempo de creación en segundos de la creación de los índices GIN y SPIMI
+Para la creación de indexarón las siguientes columnas: "track_name","track_artist","lyrics", "track_album_name"
+
+| N    | Postgres GIN | SPIMI  |
+|------|----------|--------|
+| 1000 | 0.05     | 14.87  |
+| 2000 | 0.07     | 31.26  |
+| 4000 | 0.15     | 60.50  |
+| 8000 | 0.31     | 123.58 |
+| 16000| 0.57     | 114.08 |
+| 32000| 1.51     | 251.57 |
+| 64000| 2.98     | 466.92 |
+
+
+
+Gráfica de comparación en segundos en la creación de los índices, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
+
+![Captura de pantalla 2024-12-03 000139](https://github.com/user-attachments/assets/731e9d4c-c620-4966-b0b8-0639c4080d73)
+
+Por el lado de la creación la notamos que el índice Gin es mucho más rápido que nuestro ínidce Spimi
+
+#### Tiempo de las consultas en segundos para los índices GIN y SPIMI:
+
+Se emplearón las siguientes querys para la experimentación dónde el tiempo de la consulta viene a ser el promedio de las 2 querys:
+- "Don't sweat all the little things 
+    Just keep your eye on the bigger things
+    Cause if you look a little closer 
+    You're gonna get a bigger picture"
+- "I'mma make your CXRPSE dance
+    Ugh, hop in that Jag, do the dash
+    I shoot a nigga then laugh
+    Bitch, don't talk to me if you ain't on that"
+  
+Para obtener los k resultados relevantes se uso el valor de 20
+
+| N     | Postgres GIN | SPIMI  |
+|-------|----------|--------|
+| 1000  | 0.04     | 0.15   |
+| 2000  | 0.06     | 0.75   |
+| 4000  | 0.12     | 0.37   |
+| 8000  | 0.23     | 0.77   |
+| 16000 | 0.41     | 0.86   |
+| 32000 | 0.64     | 1.66   |
+| 64000 | 1.28     | 2.97   |
+
+Gráfica de comparación en segundos en la recuperación por consulta, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
+
+![Captura de pantalla 2024-12-03 000127](https://github.com/user-attachments/assets/fa9090b9-b5fb-4639-8179-20bb29d74b9c)
+
+Debido a que en este caso las diferencias en magnitud no eran muchas se decidió también efectuar la gráfica en segundos sin reescalamiento para algún eje.
+
+![Captura de pantalla 2024-12-03 000150](https://github.com/user-attachments/assets/08febb23-3ce1-4c2d-9be9-abef061b6093)
+
+Por el lado de las consultas nuestro índice SPIMi si entrega los resultados en un tiempo similar al índice GIN.
+
+#### Concurrencia
+
+Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguinete tabla.
+
+| N     | SPIMI  | SPIMI concurrente |
+|-------|--------|-------------------|
+| 1000  | 14.87  | 16.29    |
+| 2000  | 31.26  | 31.95       |
+| 4000  | 60.50  | 61.03      |
+| 8000  | 123.58 | 123.98       |
+| 16000 | 114.08 | 260.31      |
+| 32000 | 251.57 | 560.91    |
+
+Sin embargo, la creación no sufrió alguna mejora significativa, de hecho en 16k la diferencia no es buena, lo cual tiene sentido ya que la cantidad de bloques incrementa por lo que la cantidad de hilos va incrementando, es decir para un correcto uso de hilos se necesitaría "balancear" tanto la cantidad de bloques y los hilos para un correcto funcionamiento.
+
+
 
 Referencias:
 
