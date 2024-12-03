@@ -145,16 +145,18 @@ En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, 
 
 ### Cómo se construye el índice invertido en PostgreSQL
 
-- La función create_table() crea una tabla en la base de datos llamada songs con varias columnas, entre las que se incluye info_vector de tipo tsvector. La tabla también incluye campos como track_name, track_artist, lyrics y demás atributos del csv para poder insertar.
+- La función create_table() crea una tabla en la base de datos llamada songs con varias columnas, incluyendo info_vector de tipo tsvector. Este vector va a contener la infórmación relevante de la fila.
+- Después set_index() crea un índice invertido en la columna info_vector, utilizando el índice GIN de postgres.
 - Luego la función insert_all() carga los datos de un archivo CSV (songs.csv) en la tabla songs.
-- Después set_index() crea un índice invertido en la columna info_vector, utilizando el índice GIN.
-- La función update_index() nos permite seleccionar el lenguaje y priorizar las columnas:
+- Subsecuentemente, la función update_index() nos permite seleccionar el lenguaje a escojer.
 
   ![imagen](https://github.com/user-attachments/assets/74a916e0-4b28-4ca3-bc0e-4624ced4d420)
 
   Se utilizan los pesos asignados por la función setweight() para dar diferentes niveles de relevancia a cada columna. El peso más alto, 'A', se asigna al nombre de la canción (track_name), el siguiente peso, 'B', al nombre del álbum (track_album_name), y los pesos 'C' y 'D' se asignan al nombre del artista (track_artist) y las letras (lyrics), respectivamente.
 
-- Finalmente realizamos las consultas.
+  Los vectores de cada columna son obtenidos con to_tsvector. Este tipo de dato está optimizado para búsqueda rápida y eficiente, pues guarda una lista con los lexemas, sus posiciones y su peso en el documento.
+
+- Finalmente realizamos las consultas. Dado una oración que buscar, se realiza un preprocesamiento en el que se quitan los símbolos especiales, y se reemplaza los espacios en la palabra el símbolo _|_, pues este representa un _or_. Luego del preprocesamiento, se usa to_tsquery para obtener el vector característico usado para realziar la búsqueda. Para determinar las tuplas más cercanas, se usa ts_rank_cd para obtener un score numérico por el que ordenar.
 
 ## Backend: Indice Multidimensional
 
