@@ -1,0 +1,3 @@
+Dataset,Tiempo_Creacion (s),Tiempo_Consulta_Promedio (s)
+spotify_16000.csv,114.08380055427551,0.8563598394393921
+spotify_32000.csv,251.57110834121704,1.6553977727890015
