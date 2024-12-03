@@ -333,7 +333,7 @@ Por el lado de las consultas nuestro índice SPIMi si entrega los resultados en 
 
 ##### Concurrencia
 
-Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguinete tabla.
+Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguiente tabla.
 
 | N     | SPIMI  | SPIMI concurrente |
 |-------|--------|-------------------|
