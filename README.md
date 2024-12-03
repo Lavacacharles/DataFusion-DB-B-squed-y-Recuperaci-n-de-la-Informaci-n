@@ -247,7 +247,7 @@ Para la creación de indexarón las siguientes columnas: "track_name","track_art
 | 32000| 1.51     | 251.57 |
 | 64000| 2.98     | 466.92 |
 
-Gráfica de comparación en segundos en la creación de los índices, notar que el eje y está en escala logarítmica de base sumado +2 para el reescalamiento de los negativos.
+Gráfica de comparación en segundos en la creación de los índices, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
 
 ![Captura de pantalla 2024-12-03 000139](https://github.com/user-attachments/assets/731e9d4c-c620-4966-b0b8-0639c4080d73)
 
@@ -276,7 +276,7 @@ Para obtener los k resultados relevantes se uso el valor de 20
 | 32000 | 0.64     | 1.66   |
 | 64000 | 1.28     | 2.97   |
 
-Gráfica de comparación en segundos en la recuperación por consulta, notar que el eje y está en escala logarítmica de base sumado +2 para el reescalamiento de los negativos.
+Gráfica de comparación en segundos en la recuperación por consulta, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
 
 ![Captura de pantalla 2024-12-03 000127](https://github.com/user-attachments/assets/fa9090b9-b5fb-4639-8179-20bb29d74b9c)
 
