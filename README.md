@@ -1,10 +1,26 @@
 # DataFusion-DB-B-squeda-y-Recuperaci-n-de-la-Informaci-n
 
 - ! Importante:
-  Indice invertido parte algortimica: En la rama index_spimi1 con nombre Spimi_Optimizacion.ipynb
+  Indice invertido parte algortimica (backend): En la rama index_spimi1 con nombre Spimi_Optimizacion.ipynb
 - En la rama compiler se encuentra el front y el back listo para fusionar
 
 ## Introducción
+
+### Objetivo del proyecto
+
+El objetivo del proyecto es recuperar información, ya sea de tipo textual mediante un índice invertido o multimedia utilizando un índice multidimensional. Asimismo, se busca comparar las técnicas implementadas con otras soluciones existentes. Por ejemplo, se desarrolló SPIMI para compararla con el índice GIN de PostgreSQL. Además, se realizará una comparación de índices multidimensionales aplicando búsquedas KNN de manera secuencial en estructuras como R-Tree y en espacios de alta dimensionalidad.
+
+### Dominio de datos Índice invertido
+Para el índice invertido empleamos el dataset dado por Kagle: [spotify_songs](https://www.kaggle.com/datasets/imuhammad/audio-features-and-lyrics-of-spotify-songs). Este dataset contiene información diversa sobre más de 18,000 canciones de Spotify, incluyendo datos sobre el artista, álbum, características acústicas (como la sonoridad), letras, idioma de las letras, géneros y subgéneros. 
+
+Para la indexación nos centramos en las siguientes columnas: 
+
+- track_name: Nombre de la canción. 
+- track_artist: Artista de la canción. 
+- lyrics: Letra de la canción. 
+- track_album_name: Nombre del álbum al que pertenece la canción.
+
+
 
 ## Backend: Índice Invertido
 
