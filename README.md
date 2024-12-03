@@ -255,11 +255,12 @@ El de 32 000 características se hizo con solo 20 000 datos del dataset.
 
 ## Experimentación
 
-### Índice Invertido
+### Tablas y gráficos de los resultados experimentales
+#### Índice Invertido
 En las siguientes tablas N representa la cantidad canciones que se usarón para la experimentación, y los valores para Postgres GIN y SPIMI se encuentran en segundos
 
 
-#### Tiempo de creación en segundos de la creación de los índices GIN y SPIMI
+##### Tiempo de creación en segundos de la creación de los índices GIN y SPIMI
 Para la creación de indexarón las siguientes columnas: "track_name","track_artist","lyrics", "track_album_name"
 
 | N    | Postgres GIN | SPIMI  |
@@ -280,7 +281,7 @@ Gráfica de comparación en segundos en la creación de los índices, notar que 
 
 Por el lado de la creación la notamos que el índice Gin es mucho más rápido que nuestro ínidce Spimi
 
-#### Tiempo de las consultas en segundos para los índices GIN y SPIMI:
+##### Tiempo de las consultas en segundos para los índices GIN y SPIMI:
 
 Se emplearón las siguientes querys para la experimentación dónde el tiempo de la consulta viene a ser el promedio de las 2 querys:
 - "Don't sweat all the little things 
@@ -314,7 +315,7 @@ Debido a que en este caso las diferencias en magnitud no eran muchas se decidió
 
 Por el lado de las consultas nuestro índice SPIMi si entrega los resultados en un tiempo similar al índice GIN.
 
-#### Concurrencia
+##### Concurrencia
 
 Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguinete tabla.
 
@@ -329,7 +330,9 @@ Se planteó que se podría primero guardar los bloque sin ordenar para luego ant
 
 Sin embargo, la creación no sufrió alguna mejora significativa, de hecho en 16k la diferencia no es buena, lo cual tiene sentido ya que la cantidad de bloques incrementa por lo que la cantidad de hilos va incrementando, es decir para un correcto uso de hilos se necesitaría "balancear" tanto la cantidad de bloques y los hilos para un correcto funcionamiento.
 
+### Análisis y discusión
 
+- Por el lado del SPIMI la creación es muy costosa en términos de tiempo, a pesar de que se optimizo con un mergeHeap aún no es suficiente la implementación para competir con Gin de postgres. Es en ese punto dónde observamos que la creación de los bloques demora bastante tiempo por ello es necesario trabajar los bloques en un solo documento y guardar un índice que nos permita recuperarlo eficientemente. Asimismo, la carga de las normas debe ser trabajada de mejor manera en memoria secundaria, ya sea usando un Rtree o Hash file que permita la persistencia y actualización eficiente de este. Por otro lado, las consultas con nuestro SPIMI si fueron eficientes, si bien es cierto GIN aún es más veloz pero la brecha de las consultas no es mucha.
 
 Referencias:
 
