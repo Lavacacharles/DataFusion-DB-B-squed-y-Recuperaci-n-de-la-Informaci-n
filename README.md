@@ -386,7 +386,7 @@ El índice invertido de Faiss divide el dataset en contenedores. Esto facilita e
 
 El de 32 000 características se hizo con solo 20 000 datos del dataset.
 
-![Gráfica de tiempos](images/KNN-Secuencial and KNN-HighD.png)
+![Gráfica de tiempos](images/graph_part3.png)
 
 ## Frontend
 
