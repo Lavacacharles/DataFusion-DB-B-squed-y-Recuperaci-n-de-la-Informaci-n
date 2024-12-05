@@ -278,6 +278,50 @@ from PIL import Image
 processor = AutoImageProcessor.from_pretrained("magic-leap-community/superpoint")
 model = SuperPointForKeypointDetection.from_pretrained("magic-leap-community/superpoint")
 ```
+- Para la extracción de características, definimos un proceso por batches:
+```python
+import os
+import pickle
+from PIL import Image
+import torch
+from concurrent.futures import ThreadPoolExecutor
+
+def process_batch(batch, dataset_folder_output, processor, model):
+    folder_batch_images = [path['path'] for path in batch]
+    name_batch_images = [path['name'] for path in batch]
+
+    inputs = processor([Image.open(image_path) for image_path in folder_batch_images], return_tensors="pt")
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    output_tensors = [{'image_name': name, 'tensor': tensor} for name, tensor in zip(name_batch_images, outputs.keypoints.cpu().numpy())]
+    batch_index = batch[0]['batch_index']
+    output_path = os.path.join(dataset_folder_output, f"{batch_index}.pkl")
+    with open(output_path, 'wb') as f:
+        pickle.dump(output_tensors, f)
+```
+- Definimos un número de imágenes = 8, era el único en el que la memoria podía soportar el procesamiento, y utilizamos la librería "" que nos permite paralelizar el proceso, el código de la extracción es el siguiente,:
+```python
+batch = 8
+num_images = len(list_images)
+
+for idx, item in enumerate(list_images):
+    item['batch_index'] = (idx)//32 + 3776
+
+batches = [list_images[i:i + batch] for i in range(0, num_images, batch)]
+
+with ThreadPoolExecutor(max_workers=4) as executor:
+    futures = [
+        executor.submit(process_batch, batch, dataset_folder_output, processor, model)
+        for batch in batches
+    ]
+
+for future in futures:
+    future.result()
+
+```
+- Mensage: Nunca término :(, ya va 2 días. 
+
 
 - Loa resultados fueron:
   ![image](https://github.com/user-attachments/assets/53ad8bf1-4751-4fb8-aba9-e4aa093ea431)
