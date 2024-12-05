@@ -368,6 +368,42 @@ for dimension_de_prueba in dimensiones_variations:
 
 ### Segunda parte: Experimental
 
+### RTree
+
+#### Vectores Característicos
+Utilizamos ResNet-152 para generar vectores característicos de 2048 dimensiones que capturan la esencia visual de cada imagen. Estos vectores son la base para determinar la similitud entre imágenes.
+
+#### Reducción de Dimensionalidad con UMAP
+Para optimizar el rendimiento del sistema, implementamos UMAP (Uniform Manifold Approximation and Projection) como técnica de reducción de dimensionalidad, reduciendo los vectores característicos de 2048 a 128 dimensiones. La elección de UMAP sobre otras técnicas como PCA o t-SNE se fundamenta en varias ventajas clave:
+
+#### Comparación entre UMAP y PCA
+En el desarrollo de nuestro sistema, consideramos tanto UMAP como PCA (Principal Component Analysis) para la reducción de dimensionalidad. Aquí analizamos por qué UMAP resultó ser la mejor opción para nuestro caso de uso específico:
+
+##### Análisis de Componentes Principales (PCA)
+PCA es una técnica lineal que encuentra las direcciones de máxima varianza en los datos de alta dimensión. Sus principales características son:
+
+- Transformación Lineal: PCA solo puede capturar relaciones lineales entre características, lo que limita su efectividad con datos de imágenes que típicamente tienen relaciones no lineales.
+- Preservación Global: Maximiza la varianza global, pero puede perder estructuras locales importantes que son cruciales para la similitud de imágenes.
+- Eficiencia Computacional: O(d²n + d³), donde d es la dimensionalidad y n el número de muestras.
+- Interpretabilidad: Los componentes principales tienen una clara interpretación geométrica.
+
+##### UMAP (Uniform Manifold Approximation and Projection)
+UMAP es una técnica no lineal basada en teoría de manifolds y topología. Sus ventajas para nuestro sistema son:
+
+- Captura No Lineal: Puede modelar relaciones complejas no lineales presentes en características de imágenes.
+- Preservación de Estructura: Mantiene tanto la estructura local como global de los datos, crucial para preservar similitudes visuales.
+- Rendimiento: O(n log n), más eficiente que PCA para dimensionalidades muy altas.
+- Métrica Personalizable: Permite usar similitud del coseno, ideal para vectores de características de CNN.
+
+#### ¿Por Qué Elegimos UMAP?
+
+- Calidad de Resultados: En pruebas con nuestro dataset de moda, UMAP preservó mejor las relaciones de similitud visual entre prendas.
+- Escalabilidad: Al manejar miles de imágenes, la complejidad O(n log n) de UMAP resulta más eficiente que la O(d²n + d³) de PCA para d=2048.
+- Flexibilidad: La capacidad de UMAP para usar similitud del coseno se alinea perfectamente con las características de ResNet.
+
+#### Indexación Espacial
+Empleamos R-tree como estructura de indexación principal, optimizada para búsquedas eficientes en espacios multidimensionales. Esta implementación permite búsquedas rápidas incluso en grandes conjuntos de datos.
+
 ### KNN-HighD
 
 KNN-HighD es un aplicación del algoritmo de KNN orientada a datasets en donde los vectores característicos tienen alta dimensionalidad.
