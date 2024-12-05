@@ -184,7 +184,6 @@ En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, 
 - Resumiendo el proceso, en las capas de convolución analizar la imágenes por cuadrillas de 7 x 7, luego de 3 x 3 en las sigueintes 4 capas, además de esto se aplican técnicas de MaxPooling y AvgPooling, que reducen el ruido tomando el valor máximo en cada grilla de 3 x 3 y la complejidad mediante la redución del tamaño de la imágen procesada. Al final de todo se aplica un ajuste del vector representativo aplanado con 1000 parámetros para obtener las características relevantes de las imágenes, en nuestro caso la variación de ResNET 152 genera un vector representativo de 2048 características.
 
 - Este es el código para configurar la extracción
-
 ```python
 from models.resnet.extract_resnet import ExtractResNet
 from utils.utils import build_cfg_path
@@ -200,15 +199,16 @@ args = OmegaConf.load(build_cfg_path(feature_type))
 args.feature_type = feature_type
 args.model_name = model_name
 args.batch_size = 32
+
+extractor = ExtractResNet(args)
+
 ```
-
 - Ahora procesamos la extracción por batches, para no sobrecargar la memoria:
-
 ```python
 
 features_list = []
 current_image = 0
-for video_path in args.video_paths:
+for image_path in args.image_paths:
 
 #--------------------- Guardamos cada 500 embeddings creados --------------------#
   if len(features_list) % 500 == 0:
@@ -217,9 +217,9 @@ for video_path in args.video_paths:
       pickle.dump(features_list, f)
     features_list = []
 
-  feature_dict = extractor.extract(video_path)
+  feature_dict = extractor.extract(image_path)
   features_list.append({
-      'image_name':video_path.split('/')[-1],
+      'image_name':image_path.split('/')[-1],
       'embedding': feature_dict['resnet']
   })
 #--------------------- Guardamos cada los últimos embeddings --------------------#
@@ -228,18 +228,25 @@ with open(save_path + "_"+ str(current_image), 'wb') as f:
   pickle.dump(features_list, f)
 
 ```
-
 - Mapeamos 5 imágenes vacías del csv que retiraremos:
-
 ```python
 shapes_images = pd.DataFrame(list_image_shapes)
 reps_shapes_images = shapes_images[shapes_images['shape'] == (0,)]
 reps_shapes_images_idx = reps_shapes_images.index
 shapes_images_vacio = shapes_images.iloc[reps_shapes_images_idx]
 ```
+<img width="124" alt="image" src="https://github.com/user-attachments/assets/3891d53d-e1ca-40b8-829f-2a5eac6e90b4">  
 
-<img width="124" alt="image" src="https://github.com/user-attachments/assets/3891d53d-e1ca-40b8-829f-2a5eac6e90b4">
 - Toda esta información son embeddings almacenados por listas en `embeddings.pkl` listos para la indexación.
+
+- Ahora guardamos el modelo para la inferencia en la demo:
+```python
+torch.save(extractor.model.state_dict(), "/resnet152_features.pth")
+```
+- Este es el código para volver a cargarlo:
+```python
+extractor.model.load_state_dict(torch.load("/resnet152_features.pth"))
+```
 
 ### Descriptores locales
 
