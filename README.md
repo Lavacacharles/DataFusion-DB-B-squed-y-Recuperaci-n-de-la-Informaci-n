@@ -191,6 +191,12 @@ En GIN, la inserción puede ser lenta, por lo que para grandes datos es mejor el
 
 ## Backend: Indice Multidimensional
 
+### KNN 
+Por el dado de KNN, empleamos como parámetro de distancia el coseno, para esto iteramos todos los vectores característicos y en un heap de tamaño K, pusheamos y popeamos el de mayor distancia, para así quedarnos con los más relevantes.
+
+![imagen](https://github.com/user-attachments/assets/9ec1efb9-5d38-4866-b096-a84ec393b62c)
+
+
 ### Extracción de características
 
 - A diferencia de utilizar la version matricial luego aplanada de las imágenes para indexar y probar los índices de recuperación, optamos por el enfoque de utilizar descriptores globales, utilizamos el modelo pre entrenado Resnet 152 que tiene la siguiente arquitecutura:
