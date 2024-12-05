@@ -1,4 +1,4 @@
-.container {
+/*.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,10 +90,9 @@
   gap: 10px; 
   width: 100%;
 }
-
+*//*
 .textArea {
-  flex: 1; /* Hace que el área de texto ocupe todo el espacio disponible */
-  padding: 20px;
+  flex: 1; 
   border-radius: 8px;
   border: 1px solid #272727;
   font-size: 16px;
@@ -103,8 +102,8 @@
 
 .buttonGroup {
   display: flex;
-  flex-direction: column; /* Coloca los botones uno encima del otro */
-  gap: 1px; /* Espacio entre el botón "trash" y el botón de información */
+  flex-direction: column; 
+  gap: 1px; 
 }
 
 .clearButton, .infoButton {
@@ -323,3 +322,4 @@
     padding: 8px 16px;
   }
 }
+*/

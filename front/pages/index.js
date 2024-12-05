@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '@/styles/Home.module.css';
@@ -33,14 +32,15 @@ export default function HomePage() {
     console.log("Consulta válida:", inputText);
     const csvResponse = 'name,age,city,occupation,salary,department\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation\nJohn,30,New York,Engineer,70000,R&D\nJane,25,Boston,Doctor,85000,Health\nDoe,22,San Francisco,Artist,50000,Art\nAlice,29,Chicago,Teacher,60000,Education\nBob,34,Seattle,Nurse,55000,Health\nCharlie,28,Austin,Architect,75000,Construction\nDiana,40,Denver,Scientist,95000,Research\nEve,27,Miami,Lawyer,67000,Law\nFrank,26,Orlando,Chef,52000,Hospitality\nGrace,32,Dallas,Pilot,88000,Aviation';
     try {
-      const fetchData = async () => {
+      const fetchData = /*async*/ () => {
         const startTime = performance.now();
-        const response = await axios.post('http://localhost:5000/api/search', { query: inputText, index: selectedOption}, {
+        /*const response = await axios.post('http://localhost:5000/api/search', { query: inputText, index: selectedOption}, {
           headers: { 'Content-Type': 'application/json' },
         });
         const csvData = response.data;
-        const data = parseCSV(csvData);
-        const endTime = performance.now(); // Tiempo de fin
+        const data = parseCSV(csvData);*/
+        const data = parseCSV(csvResponse);
+        const endTime = performance.now();
         setExecutionTime((endTime - startTime).toFixed(2));
         console.log("Tiempo de ejecución:", (endTime - startTime).toFixed(2), "ms");
         console.log("Data:", data);
@@ -54,10 +54,6 @@ export default function HomePage() {
       console.error("Error al recibir el CSV:", error);
       setErrorMessage("Hubo un problema al recibir los datos del backend.");
     }
-
-    
-    const data = parseCSV(csvResponse);
-    setTableData(data);
 
   };
 
