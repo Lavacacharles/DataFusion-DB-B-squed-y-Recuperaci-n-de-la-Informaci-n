@@ -11,16 +11,15 @@
 El objetivo del proyecto es recuperar información, ya sea de tipo textual mediante un índice invertido o multimedia utilizando un índice multidimensional. Asimismo, se busca comparar las técnicas implementadas con otras soluciones existentes. Por ejemplo, se desarrolló SPIMI para compararla con el índice GIN de PostgreSQL. Además, se realizará una comparación de índices multidimensionales aplicando búsquedas KNN de manera secuencial en estructuras como R-Tree y en espacios de alta dimensionalidad.
 
 ### Dominio de datos Índice invertido
-Para el índice invertido empleamos el dataset dado por Kagle: [spotify_songs](https://www.kaggle.com/datasets/imuhammad/audio-features-and-lyrics-of-spotify-songs). Este dataset contiene información diversa sobre más de 18,000 canciones de Spotify, incluyendo datos sobre el artista, álbum, características acústicas (como la sonoridad), letras, idioma de las letras, géneros y subgéneros. 
 
-Para la indexación nos centramos en las siguientes columnas: 
+Para el índice invertido empleamos el dataset dado por Kagle: [spotify_songs](https://www.kaggle.com/datasets/imuhammad/audio-features-and-lyrics-of-spotify-songs). Este dataset contiene información diversa sobre más de 18,000 canciones de Spotify, incluyendo datos sobre el artista, álbum, características acústicas (como la sonoridad), letras, idioma de las letras, géneros y subgéneros.
 
-- track_name: Nombre de la canción. 
-- track_artist: Artista de la canción. 
-- lyrics: Letra de la canción. 
+Para la indexación nos centramos en las siguientes columnas:
+
+- track_name: Nombre de la canción.
+- track_artist: Artista de la canción.
+- lyrics: Letra de la canción.
 - track_album_name: Nombre del álbum al que pertenece la canción.
-
-
 
 ## Backend: Índice Invertido
 
@@ -185,6 +184,7 @@ En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, 
 - Resumiendo el proceso, en las capas de convolución analizar la imágenes por cuadrillas de 7 x 7, luego de 3 x 3 en las sigueintes 4 capas, además de esto se aplican técnicas de MaxPooling y AvgPooling, que reducen el ruido tomando el valor máximo en cada grilla de 3 x 3 y la complejidad mediante la redución del tamaño de la imágen procesada. Al final de todo se aplica un ajuste del vector representativo aplanado con 1000 parámetros para obtener las características relevantes de las imágenes, en nuestro caso la variación de ResNET 152 genera un vector representativo de 2048 características.
 
 - Este es el código para configurar la extracción
+
 ```python
 from models.resnet.extract_resnet import ExtractResNet
 from utils.utils import build_cfg_path
@@ -201,7 +201,9 @@ args.feature_type = feature_type
 args.model_name = model_name
 args.batch_size = 32
 ```
+
 - Ahora procesamos la extracción por batches, para no sobrecargar la memoria:
+
 ```python
 
 features_list = []
@@ -226,13 +228,16 @@ with open(save_path + "_"+ str(current_image), 'wb') as f:
   pickle.dump(features_list, f)
 
 ```
+
 - Mapeamos 5 imágenes vacías del csv que retiraremos:
+
 ```python
 shapes_images = pd.DataFrame(list_image_shapes)
 reps_shapes_images = shapes_images[shapes_images['shape'] == (0,)]
 reps_shapes_images_idx = reps_shapes_images.index
 shapes_images_vacio = shapes_images.iloc[reps_shapes_images_idx]
 ```
+
 <img width="124" alt="image" src="https://github.com/user-attachments/assets/3891d53d-e1ca-40b8-829f-2a5eac6e90b4">
 - Toda esta información son embeddings almacenados por listas en `embeddings.pkl` listos para la indexación.
 
@@ -271,13 +276,17 @@ model = SuperPointForKeypointDetection.from_pretrained("magic-leap-community/sup
   ![image](https://github.com/user-attachments/assets/53ad8bf1-4751-4fb8-aba9-e4aa093ea431)
 
 ## Maldición de la dimensionalidad
+
 ### Primera parte: Conceptual
+
 La maldicion de la alta dimensionalidad es un fenomeno que ocurre conforme se incrementan las dimensiones de los vectores caracteristicos. Hace referencia a que a mas dimensiones, mas esparsos parecen los datos, las distancias convergen a ser las máximas e indistinguibles en un espacio infinito(Norma infinito), de modo que los datos antes presuntamente cercanos empiezan a perder la cercanía entre estos y la distancia se homologa para todos los datos.
 
 Para lidiar con problemas se opta por ténicas de reducción de la dimensionalidad considerando 2 factores principales, conservar las relaciones o las estructuras y distancias, dependiendo del problema, en machine learning suele priorizarse mantener las relaciones, un ejemplo es PCA y sus variaciones como SVD, que capturan la varianza de los datos y redimensionan los datos manteniendo la máxima separabilidad posible para mejorar los modelos. Por otro lado ténicas como Random Projections que mantienen las distancias y son más eficientes computacionalmente porque aplican algoritmos de orden lineal, y es la técnica utilizada en el presente informa para poder experimentar con diferentes niveles de dimensionalidad.
 
 ## Reducción de dimensiones para pruebas
+
 - Generamos una matriz a partir de las características, porque las librerías de transformación de datos necesitan tomar la escala global según la característica.
+
 ```python
 embeddings_matrix = []
 for feature in embeddings:
@@ -285,23 +294,30 @@ for feature in embeddings:
 embeddings_matrix = np.array(embeddings_matrix)
 embeddings_matrix = np.squeeze(embeddings_matrix, axis=1)
 ```
+
 - Guardamos los embeddings en un format `embeddings.npy`, porque este formato nos permite procesar los datos por batches.
+
 ```python
 memmap_path = os.path.join(dataset_folder,"embeddings_variations.npy")
 if not os.path.exists(memmap_path):
     np.save(memmap_path, embeddings_matrix)
 ```
+
 - Para variar la dimensionalidad, optamos por la ténica de `Random Projections`, , por dos motivos:
+
   1. Es más eficiente que las PCA, LDA, SVD y cualquiera de las técnicas que estén basadas en transformaciones matriciales con un costo $$O(n^2)$$, a diferencia de estos, random projections tiene un costo lineal, más adaptativo para lo que queremos lograr.
   2. Preserva mejor las distancias que las relaciones, en ténicas de PCA, LDA, SVD u otras, se caracterizan por mantener las relaciones para que los modelos de ML, puedan captar buenas características para las predicciones, sin embargo nosotros queremos experimentar los efectos de la alta dimensionalidad, que por el concepto que se describio, teoricamente aumenta los espacios y distancias, entonces random proyección mantiene este rasgo de distancia y separación haciendo efectiva la experimentación.
- 
+
   ![image](https://github.com/user-attachments/assets/4e3c8922-f310-4fb8-94ac-1e744aa86092)
-  
+
 - Continuamos con le código de generación de dimensiones:
+
 ```python
 dimensiones_variations = [1000, 2000, 4000, 8000, 16000, 32000, 64000]
 ```
+
 - Para no sobrecargar la memoria, hicimos las transformaciones por batches, esto gracias al formato .npy:
+
 ```python
 from sklearn.random_projection import GaussianRandomProjection
 for dimension_de_prueba in dimensiones_variations:
@@ -326,6 +342,7 @@ for dimension_de_prueba in dimensiones_variations:
 - Nota: No se puedo generar las dimesiones para 64k dimensiones, tuvimos limitaciones de ram propias y de los servicios en nube, es decir tanto en nuestras propias máquinas y entornos como colab y deepnote no se pudo hacer la carga aún cuando aplicamos técnicas de optimización del uso de RAM aprovechando la memoria secundaria
 
 - Con esto los datos están listos para la experimentación.
+
 ### Segunda parte: Experimental
 
 ### KNN-HighD
@@ -349,7 +366,6 @@ El índice invertido de Faiss divide el dataset en contenedores. Esto facilita e
 
 ### Resultados
 
-
 #### Índice Multidimensional
 
 | Tamaño del vector característico | KNN-Secuencial | KNN-RTree | KNN-HighD |
@@ -363,6 +379,8 @@ El índice invertido de Faiss divide el dataset en contenedores. Esto facilita e
 
 El de 32 000 características se hizo con solo 20 000 datos del dataset.
 
+![Gráfica de tiempos](images/KNN-Secuencial and KNN-HighD.png)
+
 ## Frontend
 
 ### Diseño de la GUI
@@ -375,24 +393,24 @@ El de 32 000 características se hizo con solo 20 000 datos del dataset.
 ## Experimentación
 
 ### Tablas y gráficos de los resultados experimentales
+
 #### Índice Invertido
+
 En las siguientes tablas N representa la cantidad canciones que se usarón para la experimentación, y los valores para Postgres GIN y SPIMI se encuentran en segundos
 
-
 ##### Tiempo de creación en segundos de la creación de los índices GIN y SPIMI
+
 Para la creación de indexarón las siguientes columnas: "track_name","track_artist","lyrics", "track_album_name"
 
-| N    | Postgres GIN | SPIMI  |
-|------|----------|--------|
-| 1000 | 0.05     | 14.87  |
-| 2000 | 0.07     | 31.26  |
-| 4000 | 0.15     | 60.50  |
-| 8000 | 0.31     | 123.58 |
-| 16000| 0.57     | 114.08 |
-| 32000| 1.51     | 251.57 |
-| 64000| 2.98     | 466.92 |
-
-
+| N     | Postgres GIN | SPIMI  |
+| ----- | ------------ | ------ |
+| 1000  | 0.05         | 14.87  |
+| 2000  | 0.07         | 31.26  |
+| 4000  | 0.15         | 60.50  |
+| 8000  | 0.31         | 123.58 |
+| 16000 | 0.57         | 114.08 |
+| 32000 | 1.51         | 251.57 |
+| 64000 | 2.98         | 466.92 |
 
 Gráfica de comparación en segundos en la creación de los índices, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
 
@@ -403,26 +421,27 @@ Por el lado de la creación la notamos que el índice Gin es mucho más rápido 
 ##### Tiempo de las consultas en segundos para los índices GIN y SPIMI:
 
 Se emplearón las siguientes querys para la experimentación dónde el tiempo de la consulta viene a ser el promedio de las 2 querys:
-- "Don't sweat all the little things 
-    Just keep your eye on the bigger things
-    Cause if you look a little closer 
-    You're gonna get a bigger picture"
+
+- "Don't sweat all the little things
+  Just keep your eye on the bigger things
+  Cause if you look a little closer
+  You're gonna get a bigger picture"
 - "I'mma make your CXRPSE dance
-    Ugh, hop in that Jag, do the dash
-    I shoot a nigga then laugh
-    Bitch, don't talk to me if you ain't on that"
-  
+  Ugh, hop in that Jag, do the dash
+  I shoot a nigga then laugh
+  Bitch, don't talk to me if you ain't on that"
+
 Para obtener los k resultados relevantes se uso el valor de 20
 
-| N     | Postgres GIN | SPIMI  |
-|-------|----------|--------|
-| 1000  | 0.04     | 0.15   |
-| 2000  | 0.06     | 0.75   |
-| 4000  | 0.12     | 0.37   |
-| 8000  | 0.23     | 0.77   |
-| 16000 | 0.41     | 0.86   |
-| 32000 | 0.64     | 1.66   |
-| 64000 | 1.28     | 2.97   |
+| N     | Postgres GIN | SPIMI |
+| ----- | ------------ | ----- |
+| 1000  | 0.04         | 0.15  |
+| 2000  | 0.06         | 0.75  |
+| 4000  | 0.12         | 0.37  |
+| 8000  | 0.23         | 0.77  |
+| 16000 | 0.41         | 0.86  |
+| 32000 | 0.64         | 1.66  |
+| 64000 | 1.28         | 2.97  |
 
 Gráfica de comparación en segundos en la recuperación por consulta, notar que el eje y está en escala logarítmica de base 10 sumado +2 para el reescalamiento de los negativos.
 
@@ -439,13 +458,13 @@ Por el lado de las consultas nuestro índice SPIMi si entrega los resultados en 
 Se planteó que se podría primero guardar los bloque sin ordenar para luego antes del MergeHeap efectuar un sort de los bloques utilizando concurrencia, obteniendo así la siguiente tabla.
 
 | N     | SPIMI  | SPIMI concurrente |
-|-------|--------|-------------------|
-| 1000  | 14.87  | 16.29    |
-| 2000  | 31.26  | 31.95       |
-| 4000  | 60.50  | 61.03      |
-| 8000  | 123.58 | 123.98       |
-| 16000 | 114.08 | 260.31      |
-| 32000 | 251.57 | 560.91    |
+| ----- | ------ | ----------------- |
+| 1000  | 14.87  | 16.29             |
+| 2000  | 31.26  | 31.95             |
+| 4000  | 60.50  | 61.03             |
+| 8000  | 123.58 | 123.98            |
+| 16000 | 114.08 | 260.31            |
+| 32000 | 251.57 | 560.91            |
 
 Sin embargo, la creación no sufrió alguna mejora significativa, de hecho en 16k la diferencia no es buena, lo cual tiene sentido ya que la cantidad de bloques incrementa por lo que la cantidad de hilos va incrementando, es decir para un correcto uso de hilos se necesitaría "balancear" tanto la cantidad de bloques y los hilos para un correcto funcionamiento.
 
