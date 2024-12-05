@@ -370,6 +370,9 @@ for dimension_de_prueba in dimensiones_variations:
 
 ### RTree
 
+Acceso directo a la implementación: https://github.com/Lavacacharles/DataFusion-DB-B-squed-y-Recuperaci-n-de-la-Informaci-n/blob/main/back/knn_rtree/main.py
+Acceso a archivos adicionales: https://drive.google.com/drive/folders/1JtVR143xykoEa86cCqKBizW6F1uO3pUI
+
 #### Vectores Característicos
 Utilizamos ResNet-152 para generar vectores característicos de 2048 dimensiones que capturan la esencia visual de cada imagen. Estos vectores son la base para determinar la similitud entre imágenes.
 
