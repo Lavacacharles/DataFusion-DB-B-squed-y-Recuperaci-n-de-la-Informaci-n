@@ -173,6 +173,22 @@ En este caso pudimos observar que si bien es cierto esperábamos que "Crashing, 
 
 - Finalmente realizamos las consultas. Dado una oración que buscar, se realiza un preprocesamiento en el que se quitan los símbolos especiales, y se reemplaza los espacios en la palabra el símbolo _|_, pues este representa un _or_. Luego del preprocesamiento, se usa to_tsquery para obtener el vector característico usado para realziar la búsqueda. Para determinar las tuplas más cercanas, se usa ts_rank_cd para obtener un score numérico por el que ordenar.
 
+### GIN
+Tanto GIN como GIST trabajan con columnas de tipo tsvector.
+
+Por el lado de GIST, puede producir falsos positivos. Esto se debe a que los documentos son representados por una firma de longitud fija. Como la firma es generada por un hash de la palabra en un n-bit string, cuando dos palabras distintas tienen el mismo bit de hash, se produce un falso positivo. Esta pérdida se resuelve comparando con el registro original; sin embargo, el costo de ingresar a las columnas hace que GIST pierda performance.
+
+Por otro lado, GIN no pierde información y su performance depende logarítmicamente de la cantidad única de palabras.
+
+De manera general, Postgres recomienda GIST para datos que se actualizan constantemente y GIN para datos estáticos. Por otro lado, GIST es muy veloz con 100,000 palabras únicas, mientras que a partir de ese dato, GIN es mejor, pero más lento para las actualizaciones.
+
+El índice GIN fue añadido en la versión 8.2 de PostgreSQL aproximadamente hace 15 años.
+GIN internamente consiste en un B-tree construido por (ET, entries tree). Cada entrada es un elemento del valor indexado (elemento, lexema), y cada una de estas tuplas en una hoja del B-tree es un puntero hacia otro B-tree que apunta hacia un posting tree o hacia una lista de postings si la tupla es aún pequeña.
+
+GIN trabaja con ayuda de una lista de entradas pendientes que optimiza su performance, debido a que la actualización es costosa. Pero esta estrategia significa que se debe buscar en la lista de entradas también.
+
+En GIN, la inserción puede ser lenta, por lo que para grandes datos es mejor eliminar el índice, insertar los datos y luego aplicar nuevamente el índice.
+
 ## Backend: Indice Multidimensional
 
 ### Extracción de características
@@ -501,4 +517,13 @@ Referencias:
 - Baeldung. (n.d.). k-Nearest Neighbors and High Dimensional Data. Recuperado de https://www.baeldung.com/cs/k-nearest-neighbors.
 
 - Götz, M., Wenning, M., & Voss, S. (2010). Adaptive nearest neighbor search on large graphs. DBVIS Technical Reports. Recuperado de https://bib.dbvis.de/uploadedFiles/190.pdf.
+
 - Hannibunny. (n.d.). Gaussian Filter and Derivatives of Gaussian. Recuperado de https://hannibunny.github.io/orbook/referenceSection.html#citation-23.
+  
+- PostgreSQL Global Development Group. (2011). Text search indexes. PostgreSQL Documentation. https://www.postgresql.org/docs/9.1/textsearch-indexes.html
+  
+- pganalyze. (2019). GIN index performance in PostgreSQL. pganalyze blog. https://pganalyze.com/blog/gin-index
+  
+- PostgreSQL Global Development Group. (n.d.). GIN README. PostgreSQL GitHub Repository. https://raw.githubusercontent.com/postgres/postgres/refs/heads/master/src/backend/access/gin/README
+  
+- Megera, P. (n.d.). GIN Indexes. PostgreSQL Wiki. http://www.sai.msu.su/~megera/wiki/Gin
